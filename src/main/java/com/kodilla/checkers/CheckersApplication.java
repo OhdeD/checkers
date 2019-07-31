@@ -38,13 +38,20 @@ public class CheckersApplication extends Application {
 
         for(int n=0; n<8; n++ ){
             for (int m = 0; m<8; m++) {
-                ToggleButton button = new  ToggleButton();
-                grid.add(button, 0 + n, 0 + m);
+
                 if((n+m)%2 ==0 & (m<2) ){
-                    button.setGraphic(new ImageView(blackPawn));
+                    ToggleButton button = new  ToggleButton("", new ImageView(blackPawn));
+                    button.setVisible(false);
+                    grid.add(button, 0 + n, 0 + m);
                 } if ((n+m)%2 ==0 & (m>5) ){
-                    button.setGraphic(new ImageView(whitePawn));
+                    ToggleButton button = new  ToggleButton("",new ImageView(whitePawn));
+                    button.setVisible(false);
+                    grid.add(button, 0 + n, 0 + m);
                 }
+                ToggleButton button = new  ToggleButton();
+                button.setVisible(false);
+                grid.add(button, 0 + n, 0 + m);
+
             }
          }
 
