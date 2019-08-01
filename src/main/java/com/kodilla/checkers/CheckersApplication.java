@@ -21,9 +21,9 @@ import java.awt.*;
 
 public class CheckersApplication extends Application {
 
-    private Image board = new Image("file:resources/board.png");
-    private Image blackPawn = new Image("file:resources/blackPawn.png");
-    private Image whitePawn = new Image("file:resources/whitePawn.png");
+    private Image board = new Image("file:src/main/resources/board.png");
+    private Image blackPawn = new Image("file:src/main/resources/blackPawn.png");
+    private Image whitePawn = new Image("file:src/main/resources/whitePawn.png");
 
     public static void main(String[] args) {
         launch(args);
@@ -35,8 +35,8 @@ public class CheckersApplication extends Application {
         BackgroundImage backgroundImage = new BackgroundImage(board, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
         Background background = new Background(backgroundImage);
 
-        ImagePattern blackPawnPattern= new ImagePattern(blackPawn, 20, 20, 35,35, true);
-        ImagePattern whitePawnPattern= new ImagePattern(whitePawn, 20, 20, 35,35, true);
+        ImagePattern blackPawnPattern= new ImagePattern(blackPawn, 5, 5, 5,5, true);
+        ImagePattern whitePawnPattern= new ImagePattern(whitePawn, 5, 5, 5,5, true);
 
 
         GridPane grid = new GridPane();
@@ -45,8 +45,8 @@ public class CheckersApplication extends Application {
             for (int m = 0; m < 8; m++) {
                 if ((n + m) % 2 == 0 & (m < 2)) {
                     Circle whitePawn = new Circle();
-                    whitePawn.setRadius(35);
-                    whitePawn.setFill(blackPawnPattern);
+                    whitePawn.setRadius(30);
+                    whitePawn.setFill(Color.YELLOW);
                     whitePawn.setStrokeWidth(20);
                     grid.add(whitePawn, 0 + n, 0 + m);
                     grid.setHgap(10);
@@ -56,7 +56,7 @@ public class CheckersApplication extends Application {
                 if ((n + m) % 2 == 0 & (m > 5)) {
 
                     Circle blackPawn = new Circle();
-                    blackPawn.setRadius(35);
+                    blackPawn.setRadius(30);
                     blackPawn.setFill(Color.BLACK);
                     blackPawn.setStrokeWidth(50);
                     grid.add(blackPawn, 0 + n, 0 + m);
@@ -66,7 +66,7 @@ public class CheckersApplication extends Application {
                 }
                 if ( ( (n + m)%2==0 & ((m < 6)&(m > 1))  ||  ((n + m) % 2 != 0))  ) {
                     Circle empty = new Circle();
-                    empty.setRadius(35);
+                    empty.setRadius(30);
                     empty.setFill(Color.WHITE);
                     grid.add(empty, 0 + n, 0 + m);
                     grid.setHgap(10);
@@ -75,7 +75,7 @@ public class CheckersApplication extends Application {
                 }
             }
         }
-
+        grid.setBackground(background);
         Group root = new Group(grid);
 
         Scene scene = new Scene(root, 1000, 1000);
