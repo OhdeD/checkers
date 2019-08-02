@@ -22,8 +22,8 @@ import java.awt.*;
 public class CheckersApplication extends Application {
 
     private Image board = new Image("file:src/main/resources/board.png");
-    private Image blackPawn = new Image("file:src/main/resources/blackPawn.png");
-    private Image whitePawn = new Image("file:src/main/resources/whitePawn.png");
+    private Image blackPawn = new Image("file:src/main/resources/pionekczarny.png");
+    private Image whitePawn = new Image("file:src/main/resources/PIONEKbialy.png");
 
     public static void main(String[] args) {
         launch(args);
@@ -31,54 +31,52 @@ public class CheckersApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BackgroundSize size = new BackgroundSize(1100, 1100, false, false, true, true);
+        BackgroundSize size = new BackgroundSize(900, 900, false, false, true, true);
         BackgroundImage backgroundImage = new BackgroundImage(board, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
         Background background = new Background(backgroundImage);
 
-        ImagePattern blackPawnPattern= new ImagePattern(blackPawn, 5, 5, 5,5, true);
-        ImagePattern whitePawnPattern= new ImagePattern(whitePawn, 5, 5, 5,5, true);
+        ImagePattern blackPawnPattern = new ImagePattern(blackPawn, 0, 0, 1, 1, true);
+        ImagePattern whitePawnPattern = new ImagePattern(whitePawn, 0, 0, 1, 1, true);
 
 
         GridPane grid = new GridPane();
+        for (int i = 0; i < 8; i++) {
+            grid.getColumnConstraints().add(new ColumnConstraints(100));
+        }
+        for (int i = 0; i < 8; i++) {
+            grid.getRowConstraints().add(new RowConstraints(100));
+        }
 
         for (int n = 0; n < 8; n++) {
             for (int m = 0; m < 8; m++) {
                 if ((n + m) % 2 == 0 & (m < 2)) {
                     Circle whitePawn = new Circle();
-                    whitePawn.setRadius(30);
-                    whitePawn.setFill(Color.YELLOW);
-                    whitePawn.setStrokeWidth(20);
+                    whitePawn.setRadius(50);
+                    whitePawn.setFill(whitePawnPattern);
+                    whitePawn.setStrokeWidth(50);
                     grid.add(whitePawn, 0 + n, 0 + m);
-                    grid.setHgap(10);
-                    grid.setVgap(10);
+
 
                 }
                 if ((n + m) % 2 == 0 & (m > 5)) {
 
                     Circle blackPawn = new Circle();
-                    blackPawn.setRadius(30);
-                    blackPawn.setFill(Color.BLACK);
+                    blackPawn.setRadius(50);
+                    blackPawn.setFill(blackPawnPattern);
                     blackPawn.setStrokeWidth(50);
                     grid.add(blackPawn, 0 + n, 0 + m);
-                    grid.setHgap(10);
-                    grid.setVgap(10);
-
-                }
-                if ( ( (n + m)%2==0 & ((m < 6)&(m > 1))  ||  ((n + m) % 2 != 0))  ) {
-                    Circle empty = new Circle();
-                    empty.setRadius(30);
-                    empty.setFill(Color.WHITE);
-                    grid.add(empty, 0 + n, 0 + m);
-                    grid.setHgap(10);
-                    grid.setVgap(10);
+                    grid.setHgap(0);
+                    grid.setVgap(0);
 
                 }
             }
         }
+
+        grid.setPadding(new Insets(35,35,35,35));
         grid.setBackground(background);
         Group root = new Group(grid);
 
-        Scene scene = new Scene(root, 1000, 1000);
+        Scene scene = new Scene(root, 870, 870);
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();
