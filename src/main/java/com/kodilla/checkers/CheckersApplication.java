@@ -1,23 +1,16 @@
 package com.kodilla.checkers;
-
+import com.kodilla.checkers.logic.Board;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+
 import javafx.stage.Stage;
-
-import java.awt.*;
-
 
 public class CheckersApplication extends Application {
 
@@ -38,7 +31,6 @@ public class CheckersApplication extends Application {
         ImagePattern blackPawnPattern = new ImagePattern(blackPawn, 0, 0, 1, 1, true);
         ImagePattern whitePawnPattern = new ImagePattern(whitePawn, 0, 0, 1, 1, true);
 
-
         GridPane grid = new GridPane();
         for (int i = 0; i < 8; i++) {
             grid.getColumnConstraints().add(new ColumnConstraints(100));
@@ -47,36 +39,21 @@ public class CheckersApplication extends Application {
             grid.getRowConstraints().add(new RowConstraints(100));
         }
 
-        for (int n = 0; n < 8; n++) {
-            for (int m = 0; m < 8; m++) {
-                if ((n + m) % 2 == 0 & (m < 2)) {
-                    Circle whitePawn = new Circle();
-                    whitePawn.setRadius(50);
-                    whitePawn.setFill(whitePawnPattern);
-                    whitePawn.setStrokeWidth(50);
-                    grid.add(whitePawn, 0 + n, 0 + m);
-
-
-                }
-                if ((n + m) % 2 == 0 & (m > 5)) {
-
-                    Circle blackPawn = new Circle();
-                    blackPawn.setRadius(50);
-                    blackPawn.setFill(blackPawnPattern);
-                    blackPawn.setStrokeWidth(50);
-                    grid.add(blackPawn, 0 + n, 0 + m);
-                    grid.setHgap(0);
-                    grid.setVgap(0);
-
-                }
-            }
-        }
+        Board board = new Board(grid, blackPawnPattern, whitePawnPattern);
+        board.initBoard();
 
         grid.setPadding(new Insets(35,35,35,35));
         grid.setBackground(background);
-        Group root = new Group(grid);
+        board.showBoard();
 
+        Group root = new Group(grid);
         Scene scene = new Scene(root, 870, 870);
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+               board.click(mouseEvent);
+            }
+        });
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();
