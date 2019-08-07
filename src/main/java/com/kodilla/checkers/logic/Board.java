@@ -2,11 +2,13 @@ package com.kodilla.checkers.logic;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 public class Board {
     private static final String WHITE = "WHITE";
@@ -34,7 +36,6 @@ public class Board {
 
     public Figure getFigure(int col, int row) {
         return rows.get(row).getCols().get(col);
-
     }
 
     public void initBoard() {
@@ -98,22 +99,96 @@ public class Board {
 //        }
     }
 
-    public void click(MouseEvent mouseEvent) {
+    public void showMoveOption(int col, int row) {
+        List<Circle> hilight = new ArrayList<>();
+        Circle moveOption1 = new Circle();
+        Circle moveOption2 = new Circle();
+        Circle moveOption3 = new Circle();
+        Circle moveOption4 = new Circle();
+        hilight.add(moveOption1);
+        hilight.add(moveOption2);
+        hilight.add(moveOption3);
+        hilight.add(moveOption4);
 
-        char y = 'a';
-        int yy = 8;
+        for (Circle i : hilight) {
+            i.setRadius(50);
+            i.setStrokeWidth(50);
+            i.setFill(Color.rgb(255, 255, 128, 0.2));
+        }
 
-        for (int b = 35; b < 900; b += 100) {
-            if ((b <= mouseEvent.getX()) & (mouseEvent.getX() <= (b+100))) {
-
-                for (int a = 35; a < 900; a += 100) {
-                    if ((a <= mouseEvent.getY()) & (mouseEvent.getY() <= (a + 100))) {
-                        System.out.println("" + y + yy);
-                    }
-                    yy--;
+        if (getFigure(col, row) instanceof Pawn) {
+            if (col == 7 & row == 7) {
+                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
+                    grid.add(moveOption1, col - 1, row - 1);
                 }
             }
-            y+=1;
+            if (col == 0 & row == 0) {
+                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
+                    grid.add(moveOption1, col + 1, row + 1);
+                }
+            }
+            if (col > 0 & col < 7 & row == 0) {
+                if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
+                    grid.add(moveOption1, col - 1, row + 1);
+                }
+                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
+                    grid.add(moveOption2, col + 1, row + 1);
+                }
+            }
+            if (col > 0 & col < 7 & row == 7) {
+                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
+                    grid.add(moveOption1, col - 1, row - 1);
+                }
+                if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
+                    grid.add(moveOption2, col + 1, row - 1);
+                }
+            }
+            if (row > 0 & row < 7 & col == 0) {
+                middleOnTheLeft(col, row, moveOption1, moveOption2);
+            }
+            if (row > 0 & row < 7 & col == 7) {
+                middleOnTheRight(col, row, moveOption1, moveOption2);
+            }
+            if (row > 0 & row < 7 & col > 0 & col < 7) {
+                middleOnTheRight(col, row, moveOption1, moveOption2);
+                middleOnTheLeft(col, row, moveOption3, moveOption4);
+            }
         }
+    }
+
+    private void middleOnTheRight(int col, int row, Circle moveOption1, Circle moveOption2) {
+        if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
+            grid.add(moveOption1, col - 1, row + 1);
+        }
+        if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
+            grid.add(moveOption2, col - 1, row - 1);
+        }
+    }
+
+    private void middleOnTheLeft(int col, int row, Circle moveOption1, Circle moveOption2) {
+        if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
+            grid.add(moveOption1, col + 1, row + 1);
+        }
+        if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
+            grid.add(moveOption2, col + 1, row - 1);
+        }
+    }
+
+    public void click(MouseEvent mouseEvent) {
+        int col = 0;
+        int row = 0;
+        for (int x = 35; x < 900; x += 100) {
+            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                for (int y = 35; y < 900; y += 100) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                        System.out.println(col + "-" + row);
+                        showMoveOption(col, row);
+                    }
+                    row++;
+                }
+            }
+            col += 1;
+        }
+
     }
 }
