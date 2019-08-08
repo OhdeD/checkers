@@ -4,12 +4,11 @@
     <list default="true" id="18ae6108-d732-4080-8ccd-f2fa30554da1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Pawn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Pawn.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,14 +25,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="64" selection-end-column="11" />
+            <state relative-caret-position="-311">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2092#2093#0" expanded="true" />
                 <element signature="e#2147#2148#0" expanded="true" />
-                <element signature="e#2332#2333#0" expanded="true" />
-                <element signature="e#2387#2388#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,8 +83,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="199" column="57" selection-start-line="199" selection-start-column="57" selection-end-line="199" selection-end-column="57" />
+            <state relative-caret-position="219">
+              <caret line="184" column="42" selection-start-line="184" selection-start-column="42" selection-end-line="184" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1118#1119#0" expanded="true" />
@@ -275,12 +272,12 @@
       <workItem from="1564000416792" duration="30000" />
       <workItem from="1564124677276" duration="31479000" />
       <workItem from="1564947280878" duration="35477000" />
-      <workItem from="1565259773351" duration="2207000" />
+      <workItem from="1565259773351" duration="7813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71117000" />
+    <option name="totallyTimeSpent" value="76723000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -304,7 +301,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3391116" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39761648" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.17118093" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -334,7 +331,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java</url>
-          <line>14</line>
+          <line>18</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -406,22 +403,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="64" selection-end-column="11" />
+        <state relative-caret-position="-311">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2092#2093#0" expanded="true" />
             <element signature="e#2147#2148#0" expanded="true" />
-            <element signature="e#2332#2333#0" expanded="true" />
-            <element signature="e#2387#2388#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="199" column="57" selection-start-line="199" selection-start-column="57" selection-end-line="199" selection-end-column="57" />
+        <state relative-caret-position="219">
+          <caret line="184" column="42" selection-start-line="184" selection-start-column="42" selection-end-line="184" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1118#1119#0" expanded="true" />

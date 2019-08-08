@@ -1,5 +1,6 @@
 package com.kodilla.checkers.logic;
 
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -100,17 +101,18 @@ public class Board {
     }
 
     public void showMoveOption(int col, int row) {
-        List<Circle> hilight = new ArrayList<>();
+        List<Circle> highlight = new ArrayList<>();
         Circle moveOption1 = new Circle();
         Circle moveOption2 = new Circle();
         Circle moveOption3 = new Circle();
         Circle moveOption4 = new Circle();
-        hilight.add(moveOption1);
-        hilight.add(moveOption2);
-        hilight.add(moveOption3);
-        hilight.add(moveOption4);
+        highlight.add(moveOption1);
+        highlight.add(moveOption2);
+        highlight.add(moveOption3);
+        highlight.add(moveOption4);
 
-        for (Circle i : hilight) {
+        for (Circle i : highlight) {
+            i.setId("highlight");
             i.setRadius(50);
             i.setStrokeWidth(50);
             i.setFill(Color.rgb(255, 255, 128, 0.2));
@@ -156,65 +158,6 @@ public class Board {
         }
     }
 
-    public void cancelMoveOption(int col, int row) {
-
-        if (getFigure(col, row) instanceof Pawn) {
-            if (col == 7 & row == 7) {
-                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-
-
-                }
-            }
-            if (col == 0 & row == 0) {
-                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-
-
-                }
-            }
-            if (col > 0 & col < 7 & row == 0) {
-                if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
-
-
-                }
-                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-
-                }
-            }
-            if (col > 0 & col < 7 & row == 7) {
-                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-
-
-                }
-                if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-
-
-                }
-            }
-            if (row > 0 & row < 7 & col == 0) {
-
-            }
-            if (row > 0 & row < 7 & col == 7) {
-
-            }
-            if (row > 0 & row < 7 & col > 0 & col < 7) {
-                if (getFigure((col-1), (row-1)) instanceof Circle ) {
-                    grid.getChildren().remove(getFigure((col - 1), (row - 1)));
-                }
-                if (getFigure((col-1), (row+1)) instanceof Circle ) {
-                    grid.getChildren().remove(getFigure((col - 1), (row + 1)));
-                }
-                if (getFigure((col+1), (row-1)) instanceof Circle ) {
-                    grid.getChildren().remove(getFigure((col + 1), (row - 1)));
-                }
-                if (getFigure((col+1), (row+1)) instanceof Circle ) {
-                    grid.getChildren().remove(getFigure((col + 1), (row + 1)));
-                }
-
-            }
-        }
-    }
-
-
     private void middleOnTheRight(int col, int row, Circle moveOption1, Circle moveOption2) {
         if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
             grid.add(moveOption1, col - 1, row + 1);
@@ -236,34 +179,32 @@ public class Board {
     public void enter(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
-        for (int x = 35; x < 900; x += 100) {
-            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = 35; y < 900; y += 100) {
-                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
-                        System.out.println(col + "-" + row);
-                        showMoveOption(col, row);
-                    }
-                    row++;
-                }
-            }
-            col += 1;
-        }
+
+          for (int x = 35; x < 835; x += 100) {
+              if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                  for (int y = 35; y < 835; y += 100) {
+                      if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                          System.out.println(col + "-" + row);
+                          showMoveOption(col, row);
+                      }
+                      row++;
+                  }
+              }
+              col += 1;
+          }
+
     }
 
-    public void exit(MouseEvent mouseEvent) {
-        int col = 0;
-        int row = 0;
-        for (int x = 35; x < 900; x += 100) {
-            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = 35; y < 900; y += 100) {
-                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
-                        System.out.println(col + "-" + row);
-                        cancelMoveOption(col, row);
-                    }
-                    row++;
+    public List<Node> exit(MouseEvent mouseEvent) {
+        List<Node> toRemove = new ArrayList<>();
+        for (Node node : grid.getChildren()) {
+            if (node instanceof Circle) {
+                if ("highlight".equals(node.getId())) {
+                    toRemove.add(node);
                 }
             }
-            col += 1;
+
         }
+        return toRemove;
     }
 }

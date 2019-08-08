@@ -1,9 +1,11 @@
 package com.kodilla.checkers;
+
 import com.kodilla.checkers.logic.Board;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -11,6 +13,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class CheckersApplication extends Application {
 
@@ -42,7 +46,7 @@ public class CheckersApplication extends Application {
         Board board = new Board(grid, blackPawnPattern, whitePawnPattern);
         board.initBoard();
 
-        grid.setPadding(new Insets(35,35,35,35));
+        grid.setPadding(new Insets(35, 35, 35, 35));
         grid.setBackground(background);
         board.showBoard();
 
@@ -60,7 +64,8 @@ public class CheckersApplication extends Application {
         scene.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                board.exit(mouseEvent);
+                List<Node> toRemove = board.exit(mouseEvent);
+                grid.getChildren().removeAll(toRemove);
             }
         });
 
