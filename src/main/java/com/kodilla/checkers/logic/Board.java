@@ -73,7 +73,6 @@ public class Board {
             if (node instanceof Circle) {
 
                 if ((col1 + "-" + row1).equals(node.getId())) {
-                    System.out.println(col1 + " - " + row1 +" should be deleted");
                     toRemove = node;
                 }
             }
@@ -229,6 +228,8 @@ public class Board {
 
     int[] moves = new int[4];
 
+    List<Node>picked = new ArrayList<>();
+
     public void startMove(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
@@ -238,6 +239,22 @@ public class Board {
                 for (int y = 35; y < 835; y += 100) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         if (getFigure(col, row) instanceof Pawn) {
+                            ImagePattern p = (getFigure(col, row).getColour().equals(BLACK)) ? blackPawnPattern : whitePawnPattern;
+                            Circle c = new Circle();
+                            c.setRadius(50);
+                            c.setFill(Color.rgb(102, 153, 255, 0.2));
+                            c.setStrokeWidth(50);
+                            c.setId("c");
+                            grid.add(c, col, row);
+
+                            for (Node node : grid.getChildren()) {
+                                if (node instanceof Circle) {
+                                    if ("c".equals(node.getId())) {
+                                        picked.add(node);
+                                    }
+                                }
+                            }
+
                             moves[0] = col;
                             moves[1] = row;
                             System.out.println("col & row added to list ");
@@ -256,6 +273,7 @@ public class Board {
     public Node endMove(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
+        grid.getChildren().removeAll(picked);
 
         for (int x = 35; x < 835; x += 100) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
@@ -279,11 +297,10 @@ public class Board {
                                 moves[2] = col;
                                 moves[3] = row;
                                 System.out.println("col & row added on 2 & 3");
-                            } else {
-                                System.out.println("Not allowed");
                             }
 
-                        } else {
+                        }
+                        else {
                             System.out.println("not empty field");
                         }
 
