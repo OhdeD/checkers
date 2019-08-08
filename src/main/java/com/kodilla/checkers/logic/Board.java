@@ -156,6 +156,65 @@ public class Board {
         }
     }
 
+    public void cancelMoveOption(int col, int row) {
+
+        if (getFigure(col, row) instanceof Pawn) {
+            if (col == 7 & row == 7) {
+                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
+
+
+                }
+            }
+            if (col == 0 & row == 0) {
+                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
+
+
+                }
+            }
+            if (col > 0 & col < 7 & row == 0) {
+                if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
+
+
+                }
+                if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
+
+                }
+            }
+            if (col > 0 & col < 7 & row == 7) {
+                if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
+
+
+                }
+                if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
+
+
+                }
+            }
+            if (row > 0 & row < 7 & col == 0) {
+
+            }
+            if (row > 0 & row < 7 & col == 7) {
+
+            }
+            if (row > 0 & row < 7 & col > 0 & col < 7) {
+                if (getFigure((col-1), (row-1)) instanceof Circle ) {
+                    grid.getChildren().remove(getFigure((col - 1), (row - 1)));
+                }
+                if (getFigure((col-1), (row+1)) instanceof Circle ) {
+                    grid.getChildren().remove(getFigure((col - 1), (row + 1)));
+                }
+                if (getFigure((col+1), (row-1)) instanceof Circle ) {
+                    grid.getChildren().remove(getFigure((col + 1), (row - 1)));
+                }
+                if (getFigure((col+1), (row+1)) instanceof Circle ) {
+                    grid.getChildren().remove(getFigure((col + 1), (row + 1)));
+                }
+
+            }
+        }
+    }
+
+
     private void middleOnTheRight(int col, int row, Circle moveOption1, Circle moveOption2) {
         if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
             grid.add(moveOption1, col - 1, row + 1);
@@ -174,7 +233,7 @@ public class Board {
         }
     }
 
-    public void click(MouseEvent mouseEvent) {
+    public void enter(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
         for (int x = 35; x < 900; x += 100) {
@@ -189,6 +248,22 @@ public class Board {
             }
             col += 1;
         }
+    }
 
+    public void exit(MouseEvent mouseEvent) {
+        int col = 0;
+        int row = 0;
+        for (int x = 35; x < 900; x += 100) {
+            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                for (int y = 35; y < 900; y += 100) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                        System.out.println(col + "-" + row);
+                        cancelMoveOption(col, row);
+                    }
+                    row++;
+                }
+            }
+            col += 1;
+        }
     }
 }

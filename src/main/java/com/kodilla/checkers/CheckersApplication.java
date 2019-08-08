@@ -48,12 +48,22 @@ public class CheckersApplication extends Application {
 
         Group root = new Group(grid);
         Scene scene = new Scene(root, 870, 870);
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+
+        scene.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-               board.click(mouseEvent);
+                board.enter(mouseEvent);
             }
         });
+
+        scene.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                board.exit(mouseEvent);
+            }
+        });
+
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();

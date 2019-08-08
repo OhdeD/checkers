@@ -1,7 +1,5 @@
 package com.kodilla.checkers.logic;
 
-import javafx.scene.image.Image;
-
 public class Pawn implements Figure {
     private String colour;
     public Pawn(String colour){
@@ -12,7 +10,4 @@ public class Pawn implements Figure {
     public String getColour() {
         return colour;
     }
-
-
-
 }
