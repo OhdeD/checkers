@@ -58,10 +58,30 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
     }
 
-    public void move(int col1, int row1, int col2, int row2) {
+    public Node move(int col1, int row1, int col2, int row2) {
         Figure f = getFigure(col1, row1);
-        setFigure(col2, row2, f);
+        ImagePattern p = (f.getColour().equals(BLACK)) ? blackPawnPattern : whitePawnPattern;
+        Circle systemPawn = new Circle();
+        systemPawn.setRadius(50);
+        systemPawn.setFill(p);
+        systemPawn.setStrokeWidth(50);
+        systemPawn.setId(col2 + "-" + row2);
+        grid.add(systemPawn, col2, row2);
+
+        Node toRemove = null;
+        for (Node node : grid.getChildren()) {
+            if (node instanceof Circle) {
+
+                if ((col1 + "-" + row1).equals(node.getId())) {
+                    System.out.println(col1 + " - " + row1 +" should be deleted");
+                    toRemove = node;
+                }
+            }
+        }
+
         setFigure(col1, row1, new None());
+        setFigure(col2, row2, f);
+        return toRemove;
     }
 
     public void showBoard() {
@@ -74,6 +94,7 @@ public class Board {
                     systemPawn.setRadius(50);
                     systemPawn.setFill(p);
                     systemPawn.setStrokeWidth(50);
+                    systemPawn.setId(col + "-" + row);
                     grid.add(systemPawn, col, row);
                 }
             }
@@ -232,7 +253,7 @@ public class Board {
         }
     }
 
-    public void endMove(MouseEvent mouseEvent) {
+    public Node endMove(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
 
@@ -241,9 +262,27 @@ public class Board {
                 for (int y = 35; y < 835; y += 100) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         if (!(getFigure(col, row) instanceof Pawn)) {
-                            moves[2] = col;
-                            moves[3] = row;
-                            System.out.println("col & row added on 2 & 3");
+                            if (((moves[0] + 1) == col & (moves[1] + 1) == row) ){
+                                moves[2] = col;
+                                moves[3] = row;
+                                System.out.println("col & row added on 2 & 3");
+                            }
+                            if (((moves[0] + 1) == col & (moves[1] - 1) == row)) {
+                                moves[2] = col;
+                                moves[3] = row;
+                                System.out.println("col & row added on 2 & 3");
+                            } if (((moves[0] - 1) == col & (moves[1] - 1) == row) ){
+                                moves[2] = col;
+                                moves[3] = row;
+                                System.out.println("col & row added on 2 & 3");
+                            } if ((moves[0] - 1) == col & (moves[1] + 1) == row){
+                                moves[2] = col;
+                                moves[3] = row;
+                                System.out.println("col & row added on 2 & 3");
+                            } else {
+                                System.out.println("Not allowed");
+                            }
+
                         } else {
                             System.out.println("not empty field");
                         }
@@ -253,9 +292,7 @@ public class Board {
                 }
             }
             col += 1;
-
-            move(moves[0], moves[1],moves[2],moves[3]);
-
         }
+        return move(moves[0], moves[1], moves[2], moves[3]);
     }
 }

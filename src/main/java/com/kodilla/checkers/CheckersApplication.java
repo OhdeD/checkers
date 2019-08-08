@@ -69,21 +69,22 @@ public class CheckersApplication extends Application {
             }
         });
 
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
+            boolean firstMove = true;
             @Override
             public void handle(MouseEvent mouseEvent) {
-                board.startMove(mouseEvent);
+
+                if (firstMove) {
+                    board.startMove(mouseEvent);
+                    firstMove = false;
+                }
+                else  {
+                   grid.getChildren().remove(board.endMove(mouseEvent));
+                    firstMove = true;
+                }
             }
         });
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent2) {
-                board.endMove(mouseEvent2);
-
-            }
-        });
-
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();
