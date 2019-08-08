@@ -69,6 +69,21 @@ public class CheckersApplication extends Application {
             }
         });
 
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                board.startMove(mouseEvent);
+            }
+        });
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent2) {
+                board.endMove(mouseEvent2);
+
+            }
+        });
+
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();

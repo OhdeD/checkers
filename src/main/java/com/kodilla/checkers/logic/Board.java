@@ -180,19 +180,18 @@ public class Board {
         int col = 0;
         int row = 0;
 
-          for (int x = 35; x < 835; x += 100) {
-              if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                  for (int y = 35; y < 835; y += 100) {
-                      if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
-                          System.out.println(col + "-" + row);
-                          showMoveOption(col, row);
-                      }
-                      row++;
-                  }
-              }
-              col += 1;
-          }
-
+        for (int x = 35; x < 835; x += 100) {
+            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                for (int y = 35; y < 835; y += 100) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                        System.out.println(col + "-" + row);
+                        showMoveOption(col, row);
+                    }
+                    row++;
+                }
+            }
+            col += 1;
+        }
     }
 
     public List<Node> exit(MouseEvent mouseEvent) {
@@ -203,8 +202,60 @@ public class Board {
                     toRemove.add(node);
                 }
             }
-
         }
         return toRemove;
+    }
+
+    int[] moves = new int[4];
+
+    public void startMove(MouseEvent mouseEvent) {
+        int col = 0;
+        int row = 0;
+
+        for (int x = 35; x < 835; x += 100) {
+            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                for (int y = 35; y < 835; y += 100) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                        if (getFigure(col, row) instanceof Pawn) {
+                            moves[0] = col;
+                            moves[1] = row;
+                            System.out.println("col & row added to list ");
+                        } else {
+                            System.out.println("empty");
+                        }
+
+                    }
+                    row++;
+                }
+            }
+            col += 1;
+        }
+    }
+
+    public void endMove(MouseEvent mouseEvent) {
+        int col = 0;
+        int row = 0;
+
+        for (int x = 35; x < 835; x += 100) {
+            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                for (int y = 35; y < 835; y += 100) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                        if (!(getFigure(col, row) instanceof Pawn)) {
+                            moves[2] = col;
+                            moves[3] = row;
+                            System.out.println("col & row added on 2 & 3");
+                        } else {
+                            System.out.println("not empty field");
+                        }
+
+                    }
+                    row++;
+                }
+            }
+            col += 1;
+
+            move(moves[0], moves[1],moves[2],moves[3]);
+
+        }
     }
 }
