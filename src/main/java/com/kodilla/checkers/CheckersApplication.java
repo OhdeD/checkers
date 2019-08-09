@@ -76,8 +76,10 @@ public class CheckersApplication extends Application {
             public void handle(MouseEvent mouseEvent) {
 
                 if (firstMove) {
-                    board.startMove(mouseEvent);
-                    firstMove = false;
+                    boolean executed = board.startMove(mouseEvent);
+                    if (executed){
+                        firstMove = false;
+                    }
                 }
                 else  {
                    grid.getChildren().remove(board.endMove(mouseEvent));
