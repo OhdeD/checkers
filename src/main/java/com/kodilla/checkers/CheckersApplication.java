@@ -14,6 +14,7 @@ import javafx.scene.paint.ImagePattern;
 
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckersApplication extends Application {
@@ -82,8 +83,15 @@ public class CheckersApplication extends Application {
                     }
                 }
                 else  {
-                   grid.getChildren().remove(board.endMove(mouseEvent));
+                    List<Node> nodesToRemove = new ArrayList<>(board.endMove(mouseEvent));
+
+                    System.out.println("Lista elementów do usuniecia zawiera elementów: " + nodesToRemove.size());
+
+
+                        grid.getChildren().removeAll(nodesToRemove);
+
                     firstMove = true;
+                    System.out.println("lista do usuniecia po ruchu zawiera: " + nodesToRemove.size() );
                 }
             }
         });

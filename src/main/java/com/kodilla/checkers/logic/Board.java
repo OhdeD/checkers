@@ -57,7 +57,7 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
     }
 
-    public Node move(int col1, int row1, int col2, int row2) {
+    public List<Node> move(int col1, int row1, int col2, int row2) {
         Figure f = getFigure(col1, row1);
         ImagePattern p = (f.getColour().equals(BLACK)) ? blackPawnPattern : whitePawnPattern;
         Circle systemPawn = new Circle();
@@ -67,18 +67,53 @@ public class Board {
         systemPawn.setId(col2 + "-" + row2);
         grid.add(systemPawn, col2, row2);
 
-        Node toRemove = null;
+        List<Node> toRemove = new ArrayList<>();
+
+        boolean ifUpToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == -2);
+        boolean ifDownToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == 2);
+        boolean ifDownToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == 2);
+        boolean ifUpToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == -2);
+
         for (Node node : grid.getChildren()) {
             if (node instanceof Circle) {
-
                 if ((col1 + "-" + row1).equals(node.getId())) {
-                    toRemove = node;
+                    toRemove.add(node);
+                    System.out.println("obraz piona który mial byc poruszony - dodany do usuniecia");
+                }
+                if (ifDownToTheRight) {
+                    if (((col1 + 1) + "-" + (row1 + 1)).equals(node.getId())) {
+                        toRemove.add(node);
+                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                    }
+                } else if (ifUpToTheRight) {
+                    if (((col1 + 1) + "-" + (row1 - 1)).equals(node.getId())) {
+                        toRemove.add(node);
+                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                    }
+                } else if (ifUpToTheLeft) {
+                    if (((col1 - 1) + "-" + (row1 - 1)).equals(node.getId())) {
+                        toRemove.add(node);
+                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                    }
+                } else if (ifDownToTheLeft) {
+                    if (((col1 - 1) + "-" + (row1 + 1)).equals(node.getId())) {
+                        toRemove.add(node);
+                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                    }
                 }
             }
         }
-
         setFigure(col1, row1, new None());
         setFigure(col2, row2, f);
+        if (ifDownToTheRight) {
+            setFigure(col1 + 1, row1 + 1, new None());
+        } else if (ifUpToTheRight) {
+            setFigure(col1 + 1, row1 - 1, new None());
+        } else if (ifUpToTheLeft) {
+            setFigure(col1 - 1, row1 - 1, new None());
+        } else if (ifDownToTheLeft) {
+            setFigure(col1 - 1, row1 + 1, new None());
+        }
         return toRemove;
     }
 
@@ -146,8 +181,6 @@ public class Board {
             }
             if (col == 0 & row == 0) {
                 beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
-
-
             }
             if (col > 0 & col < 7 & row == 0) {
                 beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
@@ -156,17 +189,7 @@ public class Board {
 
             if (col > 0 & col < 7 & row == 7) {
                 beatingUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-
-                if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-                    grid.add(moveOption2, col + 1, row - 1);
-                }
-                if ((getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-                    if ((getFigure((col + 1), (row - 1)).getColour() != colourOfPickedPawn)) {
-                        if (!(getFigure((col + 2), (row - 2)) instanceof Pawn)) {
-                            grid.add(moveOption2, col + 2, row - 2);
-                        }
-                    }
-                }
+                beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
             }
 
             if (row > 0 & row < 7 & col == 0) {
@@ -178,6 +201,19 @@ public class Board {
             if (row > 0 & row < 7 & col > 0 & col < 7) {
                 middleOnTheRight(col, row, moveOption1, moveOption2);
                 middleOnTheLeft(col, row, moveOption3, moveOption4);
+            }
+        }
+    }
+
+    private void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
+        if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
+            grid.add(moveOption2, col + 1, row - 1);
+        }
+        if ((getFigure((col + 1), (row - 1)) instanceof Pawn)) {
+            if ((getFigure((col + 1), (row - 1)).getColour() != colourOfPickedPawn)) {
+                if (!(getFigure((col + 2), (row - 2)) instanceof Pawn)) {
+                    grid.add(moveOption2, col + 2, row - 2);
+                }
             }
         }
     }
@@ -250,16 +286,7 @@ public class Board {
                 }
             }
         }
-        if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            grid.add(moveOption2, col + 1, row - 1);
-        }
-        if ((getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            if ((getFigure((col + 1), (row - 1)).getColour() != colourOfPickedPawn) ){
-                if (!(getFigure((col + 2), (row - 2)) instanceof Pawn)) {
-                    grid.add(moveOption2, col + 2, row - 2);
-                }
-            }
-        }
+        beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
     }
 
     public void enter(MouseEvent mouseEvent) {
@@ -326,7 +353,7 @@ public class Board {
                             moves[0] = col;
                             moves[1] = row;
                             System.out.println("col & row added to table ");
-                            firstMove = true;
+                            return firstMove;
                         } else {
                             System.out.println("You have to pick some Pawn");
                             firstMove = false;
@@ -341,11 +368,10 @@ public class Board {
         return firstMove;
     }
 
-    public Node endMove(MouseEvent mouseEvent) {
+    public List<Node> endMove(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
-        boolean notTheSamePawnClick = true;
-        Node nodeToRemoveFromMoveMethod = null;
+        boolean startMoveMethod = true;
 
         grid.getChildren().removeAll(picked);
 
@@ -370,16 +396,78 @@ public class Board {
                                 moves[2] = col;
                                 moves[3] = row;
                                 System.out.println("col & row added on 2 & 3");
-                            } else if (moves[0] == col & moves[1] == row) {
-                                notTheSamePawnClick = false;
-                                System.out.println("pawn not picked ");
+
+                            } //beating down to the right:
+                            else if (((moves[0] + 2) == col & (moves[1] + 2) == row)) {
+                                if (getFigure(moves[0] + 1, moves[1] + 1) instanceof Pawn) {
+                                    if (!((getFigure(moves[0], moves[1]).getColour()) == (getFigure(moves[0] + 1, moves[1] + 1).getColour()))) {
+                                        moves[2] = col;
+                                        moves[3] = row;
+                                        System.out.println("col & row added on 2 & 3");
+                                    } else {
+                                        System.out.println("You can't beat your own Pawn");
+                                        startMoveMethod = false;
+                                    }
+                                } else {
+                                    System.out.println("Not allowed move. You can move only to addiacent field");
+                                    startMoveMethod = false;
+                                }
+                            }//beating up to the right:
+                            else if (((moves[0] + 2) == col & (moves[1] - 2) == row)) {
+                                if (getFigure(moves[0] + 1, moves[1] - 1) instanceof Pawn) {
+                                    if (!((getFigure(moves[0], moves[1]).getColour()) == (getFigure(moves[0] + 1, moves[1] - 1).getColour()))) {
+                                        moves[2] = col;
+                                        moves[3] = row;
+                                        System.out.println("col & row added on 2 & 3");
+                                    } else {
+                                        System.out.println("You can't beat your own Pawn");
+                                        startMoveMethod = false;
+                                    }
+                                } else {
+                                    System.out.println("Not allowed move. You can move only to addiacent field");
+                                    startMoveMethod = false;
+                                }
+                            }//beating up to the left:
+                            else if (((moves[0] - 2) == col & (moves[1] - 2) == row)) {
+                                if (getFigure(moves[0] - 1, moves[1] - 1) instanceof Pawn) {
+                                    if (!((getFigure(moves[0], moves[1]).getColour()) == (getFigure(moves[0] - 1, moves[1] - 1).getColour()))) {
+                                        moves[2] = col;
+                                        moves[3] = row;
+                                        System.out.println("col & row added on 2 & 3");
+                                    } else {
+                                        System.out.println("You can't beat your own Pawn");
+                                        startMoveMethod = false;
+                                    }
+                                } else {
+                                    System.out.println("Not allowed move. You can move only to addiacent field");
+                                    startMoveMethod = false;
+                                }
+                            }//beating down to the left:
+                            else if (((moves[0] - 2) == col & (moves[1] + 2) == row)) {
+                                if (getFigure(moves[0] - 1, moves[1] + 1) instanceof Pawn) {
+                                    if (!((getFigure(moves[0], moves[1]).getColour()) == (getFigure(moves[0] - 1, moves[1] + 1).getColour()))) {
+                                        moves[2] = col;
+                                        moves[3] = row;
+                                        System.out.println("col & row added on 2 & 3");
+                                    } else {
+                                        System.out.println("You can't beat your own Pawn");
+                                        startMoveMethod = false;
+                                    }
+                                } else {
+                                    System.out.println("Not allowed move. You can move only to addiacent field");
+                                    startMoveMethod = false;
+                                }
+                            }//pick the same pawn again
+                            else if (moves[0] == col & moves[1] == row) {
+                                startMoveMethod = false;
+                                System.out.println("Pawn is not picked anymore");
                             } else {
-                                System.out.println("not allowed field");
-                                notTheSamePawnClick = false;
+                                System.out.println("Not allowed field");
+                                startMoveMethod = false;
                             }
                         } else {
                             System.out.println(" You can't move onto another Pawn");
-                            notTheSamePawnClick = false;
+                            startMoveMethod = false;
                         }
                     }
                     row++;
@@ -387,10 +475,9 @@ public class Board {
             }
             col += 1;
         }
-        if (notTheSamePawnClick) {
-            nodeToRemoveFromMoveMethod = move(moves[0], moves[1], moves[2], moves[3]);
+        if (startMoveMethod) {
+            return new ArrayList<>(move(moves[0], moves[1], moves[2], moves[3]));
         }
-        return nodeToRemoveFromMoveMethod;
-
+        return new ArrayList<Node>();
     }
 }
