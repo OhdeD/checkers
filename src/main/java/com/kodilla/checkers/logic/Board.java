@@ -7,12 +7,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Board {
     private static final String WHITE = "WHITE";
     private static final String BLACK = "BLACK";
+    private static final int BOARD_WIDTH = 835;
 
     private List<BoardRow> rows = new ArrayList<>();
     private GridPane grid;
@@ -69,10 +70,10 @@ public class Board {
 
         List<Node> toRemove = new ArrayList<>();
 
-        boolean ifUpToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == -2);
-        boolean ifDownToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == 2);
-        boolean ifDownToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == 2);
-        boolean ifUpToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == -2);
+        boolean ifUpToTheRight = ((col2 - col1) == 2) && ((row2 - row1) == -2);
+        boolean ifDownToTheRight = ((col2 - col1) == 2) && ((row2 - row1) == 2);
+        boolean ifDownToTheLeft = ((col2 - col1) == -2) && ((row2 - row1) == 2);
+        boolean ifUpToTheLeft = ((col2 - col1) == -2) && ((row2 - row1) == -2);
 
         for (Node node : grid.getChildren()) {
             if (node instanceof Circle) {
@@ -183,34 +184,60 @@ public class Board {
                 beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
             }
             if (col > 0 & col < 7 & row == 0) {
+                moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                moveDownToTheRight(col, row, moveOption2, colourOfPickedPawn);
+            }
+            if (col > 1 & col < 6 & row == 0) {
                 beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
                 beatingDownToTheRight(col, row, moveOption2, colourOfPickedPawn);
             }
-
             if (col > 0 & col < 7 & row == 7) {
+                moveUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                moveUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
+            }
+            if (col > 1 & col < 6 & row == 7) {
                 beatingUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
                 beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
             }
-
             if (row > 0 & row < 7 & col == 0) {
-                middleOnTheLeft(col, row, moveOption1, moveOption2);
+                moveUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
+                moveDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
+            }
+
+            if (row > 1 & row < 6 & col == 0) {
+                beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
+                beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
             }
             if (row > 0 & row < 7 & col == 7) {
-                middleOnTheRight(col, row, moveOption1, moveOption2);
+                moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+                moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
             }
-            if (row > 0 & row < 7 & col > 0 & col < 7) {
-                middleOnTheRight(col, row, moveOption1, moveOption2);
-                middleOnTheLeft(col, row, moveOption3, moveOption4);
+            if (row > 1 & row < 6 & col == 7) {
+                beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+                beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+            }
+            if (row > 1 & row < 6 & col > 1 & col < 6) {
+                moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+                moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+                beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                moveUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
+                moveDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
+                beatingUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
+                beatingDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
             }
         }
     }
 
-    private void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
+    private void moveUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
             grid.add(moveOption2, col + 1, row - 1);
         }
+    }
+
+    private void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if ((getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            if ((getFigure((col + 1), (row - 1)).getColour() != colourOfPickedPawn)) {
+            if ((!getFigure((col + 1), (row - 1)).getColour().equals(colourOfPickedPawn))) {
                 if (!(getFigure((col + 2), (row - 2)) instanceof Pawn)) {
                     grid.add(moveOption2, col + 2, row - 2);
                 }
@@ -218,12 +245,15 @@ public class Board {
         }
     }
 
-    private void beatingUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
+    private void moveUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
         if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
             grid.add(moveOption1, col - 1, row - 1);
         }
+    }
+
+    private void beatingUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
         if ((getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            if (getFigure((col - 1), (row - 1)).getColour() != colourOfPickedPawn) {
+            if (!getFigure((col - 1), (row - 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(getFigure((col - 2), (row - 2)) instanceof Pawn)) {
                     grid.add(moveOption1, col - 2, row - 2);
                 }
@@ -231,12 +261,15 @@ public class Board {
         }
     }
 
-    private void beatingDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
+    private void moveDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
             grid.add(moveOption2, col + 1, row + 1);
         }
+    }
+
+    private void beatingDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if ((getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-            if (getFigure((col + 1), (row + 1)).getColour() != colourOfPickedPawn) {
+            if (!getFigure((col + 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(getFigure((col + 2), (row + 2)) instanceof Pawn)) {
                     grid.add(moveOption2, col + 2, row + 2);
                 }
@@ -247,26 +280,22 @@ public class Board {
     private void middleOnTheRight(int col, int row, Circle moveOption1, Circle moveOption2) {
         String colourOfPickedPawn = getFigure(col, row).getColour();
 
+        moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
         beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
 
-        if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            grid.add(moveOption2, col - 1, row - 1);
-        }
-        if ((getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            if ((getFigure((col - 1), (row - 1)).getColour() != colourOfPickedPawn)) {
-                if (!(getFigure((col - 2), (row - 2)) instanceof Pawn)) {
-                    grid.add(moveOption2, col - 2, row - 2);
-                }
-            }
+        moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+        beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+    }
+
+    private void moveDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
+        if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
+            grid.add(moveOption1, col - 1, row + 1);
         }
     }
 
     private void beatingDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
-        if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
-            grid.add(moveOption1, col - 1, row + 1);
-        }
         if ((getFigure((col - 1), (row + 1)) instanceof Pawn)) {
-            if (getFigure((col - 1), (row + 1)).getColour() != colourOfPickedPawn) {
+            if (!getFigure((col - 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(getFigure((col - 2), (row + 2)) instanceof Pawn)) {
                     grid.add(moveOption1, col - 2, row + 2);
                 }
@@ -276,17 +305,11 @@ public class Board {
 
     private void middleOnTheLeft(int col, int row, Circle moveOption1, Circle moveOption2) {
         String colourOfPickedPawn = getFigure(col, row).getColour();
-        if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-            grid.add(moveOption1, col + 1, row + 1);
-        }
-        if ((getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-            if ((getFigure((col + 1), (row + 1)).getColour() != colourOfPickedPawn)) {
-                if (!(getFigure((col + 2), (row + 2)) instanceof Pawn)) {
-                    grid.add(moveOption1, col + 2, row + 2);
-                }
-            }
-        }
+
+        beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
+        moveDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
         beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
+        moveUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
     }
 
     public void enter(MouseEvent mouseEvent) {
@@ -369,13 +392,14 @@ public class Board {
     }
 
     public List<Node> endMove(MouseEvent mouseEvent) {
+
         int col = 0;
         int row = 0;
         boolean startMoveMethod = true;
 
         grid.getChildren().removeAll(picked);
 
-        for (int x = 35; x < 835; x += 100) {
+        for (int x = 35; x < BOARD_WIDTH; x += 100) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
                 for (int y = 35; y < 835; y += 100) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
@@ -480,4 +504,95 @@ public class Board {
         }
         return new ArrayList<Node>();
     }
+
+    public List<Node> computersMove() {
+        List<Coordinates> computersPawns = new ArrayList<>();
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                if (getFigure(col, row) instanceof Pawn) {
+                    if (getFigure(col, row).getColour() == WHITE) {
+                        computersPawns.add(new Coordinates(col, row, 0, 0));
+                    }
+                }
+            }
+        }
+        Set<Coordinates> moveDownToTheRight = computersPawns.stream()
+                .filter(e -> e.getCol() < 7 && e.getRow() < 7)
+                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() + 1)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() + 1, e.getRow() + 1))
+                .collect(Collectors.toSet());
+        Set<Coordinates> moveDownToTheLeft = computersPawns.stream()
+                .filter(e -> e.getCol() > 0 && e.getRow() < 7)
+                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() + 1)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 1, e.getRow() + 1))
+                .collect(Collectors.toSet());
+//        Set<Coordinates> moveUpToTheRight = computersPawns.stream()
+//                .filter(e -> e.getCol() < 7 && e.getRow() > 0)
+//                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)) instanceof None)
+//                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() + 1, e.getRow() - 1))
+//                .collect(Collectors.toSet());
+//        Set<Coordinates> moveUpToTheLeft = computersPawns.stream()
+//                .filter(e -> e.getCol() > 0 && e.getRow() > 0)
+//                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)) instanceof None)
+//                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 1, e.getRow() - 1))
+//                .collect(Collectors.toSet());
+
+        Set<Coordinates> beatingDownToTheRight = computersPawns.stream()
+                .filter(e -> e.getCol() < 6 && e.getRow() < 6)
+                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() + 1)) instanceof Pawn)
+                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() + 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
+                .filter(e -> getFigure((e.getCol() + 2), (e.getRow() + 2)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() + 2, e.getRow() + 2))
+                .collect(Collectors.toSet());
+        Set<Coordinates> beatingDownToTheLeft = computersPawns.stream()
+                .filter(e -> e.getCol() > 1 && e.getRow() < 6)
+                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() + 1)) instanceof Pawn)
+                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() + 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
+                .filter(e -> getFigure((e.getCol() - 2), (e.getRow() + 2)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 2, e.getRow() + 2))
+                .collect(Collectors.toSet());
+        Set<Coordinates> beatingUpToTheRight = computersPawns.stream()
+                .filter(e -> e.getCol() < 6 && e.getRow() > 2)
+                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)) instanceof Pawn)
+                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
+                .filter(e -> getFigure((e.getCol() + 2), (e.getRow() - 2)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getColToMove() + 2, e.getRowToMove() - 2))
+                .collect(Collectors.toSet());
+        Set<Coordinates> beatingUpToTheLeft = computersPawns.stream()
+                .filter(e -> e.getCol() > 1 && e.getRow() > 1)
+                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)) instanceof Pawn)
+                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
+                .filter(e -> getFigure((e.getCol() - 2), (e.getRow() - 2)) instanceof None)
+                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getColToMove() - 2, e.getRowToMove() - 2))
+                .collect(Collectors.toSet());
+
+        Set<Set<Coordinates>> moves = new HashSet<>();
+        moves.add(moveDownToTheRight);
+        moves.add(moveDownToTheLeft);
+
+
+        Set<Set<Coordinates>> beatings = new HashSet<>();
+        beatings.add(beatingUpToTheRight);
+        beatings.add(beatingUpToTheLeft);
+        beatings.add(beatingDownToTheRight);
+        beatings.add(beatingDownToTheLeft);
+
+        Optional<Coordinates> beatingCoordinate = beatings.stream()
+                .flatMap(Collection::stream)
+                .findAny();
+        Optional<Coordinates> moveCoordinate = moves.stream()
+                .flatMap(Collection::stream)
+                .findAny();
+
+        Coordinates coordinates = beatingCoordinate.orElse(moveCoordinate.get());
+        int col1 = coordinates.getCol();
+        int row1 = coordinates.getRow();
+        int col2 = coordinates.getColToMove();
+        int row2 = coordinates.getRowToMove();
+
+        computersPawns.clear();
+        return new ArrayList<>(move(col1, row1, col2, row2));
+    }
 }
+
+

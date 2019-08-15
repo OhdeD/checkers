@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CheckersApplication extends Application {
 
@@ -54,7 +55,6 @@ public class CheckersApplication extends Application {
         Group root = new Group(grid);
         Scene scene = new Scene(root, 870, 870);
 
-
         scene.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -71,27 +71,25 @@ public class CheckersApplication extends Application {
         });
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
             boolean firstMove = true;
+
             @Override
             public void handle(MouseEvent mouseEvent) {
-
                 if (firstMove) {
                     boolean executed = board.startMove(mouseEvent);
-                    if (executed){
+                    if (executed) {
                         firstMove = false;
                     }
-                }
-                else  {
+                } else {
                     List<Node> nodesToRemove = new ArrayList<>(board.endMove(mouseEvent));
-
                     System.out.println("Lista elementów do usuniecia zawiera elementów: " + nodesToRemove.size());
-
-
-                        grid.getChildren().removeAll(nodesToRemove);
-
+                    grid.getChildren().removeAll(nodesToRemove);
                     firstMove = true;
-                    System.out.println("lista do usuniecia po ruchu zawiera: " + nodesToRemove.size() );
+
+
+                    List<Node> computerNodesToRemove = board.computersMove();
+                    grid.getChildren().removeAll(computerNodesToRemove);
+                    System.out.println("It's computer's move now.");
                 }
             }
         });
