@@ -1,8 +1,8 @@
 package com.kodilla.checkers;
 
 import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.Welcome;
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -13,11 +13,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 public class CheckersApplication extends Application {
 
@@ -38,7 +39,11 @@ public class CheckersApplication extends Application {
         ImagePattern blackPawnPattern = new ImagePattern(blackPawn, 0, 0, 1, 1, true);
         ImagePattern whitePawnPattern = new ImagePattern(whitePawn, 0, 0, 1, 1, true);
 
+
         GridPane grid = new GridPane();
+        grid.setPadding(new Insets(35, 35, 35, 35));
+        grid.setBackground(background);
+
         for (int i = 0; i < 8; i++) {
             grid.getColumnConstraints().add(new ColumnConstraints(100));
         }
@@ -48,9 +53,6 @@ public class CheckersApplication extends Application {
 
         Board board = new Board(grid, blackPawnPattern, whitePawnPattern);
         board.initBoard();
-
-        grid.setPadding(new Insets(35, 35, 35, 35));
-        grid.setBackground(background);
         board.showBoard();
 
         Group root = new Group(grid);
@@ -101,5 +103,14 @@ public class CheckersApplication extends Application {
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Stage firstWindow = new Stage();
+        firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
+        firstWindow.initModality(Modality.WINDOW_MODAL);
+        firstWindow.initOwner(primaryStage);
+        firstWindow.setScene(new Welcome().openWelcomeWindow());
+        firstWindow.show();
+
+
     }
 }
