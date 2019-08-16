@@ -2,6 +2,7 @@ package com.kodilla.checkers;
 
 import com.kodilla.checkers.logic.Board;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -82,17 +83,21 @@ public class CheckersApplication extends Application {
                     }
                 } else {
                     List<Node> nodesToRemove = new ArrayList<>(board.endMove(mouseEvent));
-                    System.out.println("Lista elementów do usuniecia zawiera elementów: " + nodesToRemove.size());
-                    grid.getChildren().removeAll(nodesToRemove);
-                    firstMove = true;
+                    if (nodesToRemove.size() == 0) {
+                        firstMove = true;
+                    } else {
+                        grid.getChildren().removeAll(nodesToRemove);
 
+                        List<Node> computerNodesToRemove = board.computersMove();
+                        grid.getChildren().removeAll(computerNodesToRemove);
+                        System.out.println("It's computer's move now.");
 
-                    List<Node> computerNodesToRemove = board.computersMove();
-                    grid.getChildren().removeAll(computerNodesToRemove);
-                    System.out.println("It's computer's move now.");
+                        firstMove = true;
+                    }
                 }
             }
         });
+
         primaryStage.setTitle("Checkers");
         primaryStage.setScene(scene);
         primaryStage.show();

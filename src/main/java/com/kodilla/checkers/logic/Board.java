@@ -70,10 +70,10 @@ public class Board {
 
         List<Node> toRemove = new ArrayList<>();
 
-        boolean ifUpToTheRight = ((col2 - col1) == 2) && ((row2 - row1) == -2);
-        boolean ifDownToTheRight = ((col2 - col1) == 2) && ((row2 - row1) == 2);
-        boolean ifDownToTheLeft = ((col2 - col1) == -2) && ((row2 - row1) == 2);
-        boolean ifUpToTheLeft = ((col2 - col1) == -2) && ((row2 - row1) == -2);
+        boolean ifUpToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == -2);
+        boolean ifDownToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == 2);
+        boolean ifDownToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == 2);
+        boolean ifUpToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == -2);
 
         for (Node node : grid.getChildren()) {
             if (node instanceof Circle) {
@@ -161,12 +161,12 @@ public class Board {
         Circle moveOption2 = new Circle();
         Circle moveOption3 = new Circle();
         Circle moveOption4 = new Circle();
-        Circle moveOption5 = new Circle();
+
         highlight.add(moveOption1);
         highlight.add(moveOption2);
         highlight.add(moveOption3);
         highlight.add(moveOption4);
-        highlight.add(moveOption5);
+
 
         for (Circle i : highlight) {
             i.setId("highlight");
@@ -178,9 +178,11 @@ public class Board {
 
         if (getFigure(col, row) instanceof Pawn) {
             if (col == 7 & row == 7) {
+                moveUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
                 beatingUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
             }
             if (col == 0 & row == 0) {
+                moveDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
                 beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
             }
             if (col > 0 & col < 7 & row == 0) {
@@ -216,18 +218,21 @@ public class Board {
                 beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
                 beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
             }
-            if (row > 1 & row < 6 & col > 1 & col < 6) {
-                moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-                moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-                beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                moveUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
-                moveDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
-                beatingUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
-                beatingDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
-            }
+        }
+        if (row > 0 & row < 7 & col > 0 & col < 7) {
+            moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+            moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+            moveUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
+            moveDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
+        }
+        if (row > 1 & row < 6 & col > 1 & col < 6) {
+            beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
+            beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+            beatingUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
+            beatingDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
         }
     }
+
 
     private void moveUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
@@ -362,12 +367,12 @@ public class Board {
                             c.setRadius(50);
                             c.setFill(Color.rgb(102, 153, 255, 0.2));
                             c.setStrokeWidth(50);
-                            c.setId("c");
+                            c.setId("blue");
                             grid.add(c, col, row);
 
                             for (Node node : grid.getChildren()) {
                                 if (node instanceof Circle) {
-                                    if ("c".equals(node.getId())) {
+                                    if ("blue".equals(node.getId())) {
                                         picked.add(node);
                                     }
                                 }
@@ -381,7 +386,6 @@ public class Board {
                             System.out.println("You have to pick some Pawn");
                             firstMove = false;
                         }
-
                     }
                     row++;
                 }
@@ -404,11 +408,7 @@ public class Board {
                 for (int y = 35; y < 835; y += 100) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         if (!(getFigure(col, row) instanceof Pawn)) {
-                            if (((moves[0] + 1) == col & (moves[1] + 1) == row)) {
-                                moves[2] = col;
-                                moves[3] = row;
-                                System.out.println("col & row added on 2 & 3");
-                            } else if (((moves[0] + 1) == col & (moves[1] - 1) == row)) {
+                            if (((moves[0] + 1) == col & (moves[1] - 1) == row)) {
                                 moves[2] = col;
                                 moves[3] = row;
                                 System.out.println("col & row added on 2 & 3");
@@ -416,11 +416,12 @@ public class Board {
                                 moves[2] = col;
                                 moves[3] = row;
                                 System.out.println("col & row added on 2 & 3");
+                            } else if (((moves[0] + 1) == col & (moves[1] + 1) == row)) {
+                                System.out.println("You can't go back");
+                                startMoveMethod = false;
                             } else if ((moves[0] - 1) == col & (moves[1] + 1) == row) {
-                                moves[2] = col;
-                                moves[3] = row;
-                                System.out.println("col & row added on 2 & 3");
-
+                                System.out.println("You can't go back");
+                                startMoveMethod = false;
                             } //beating down to the right:
                             else if (((moves[0] + 2) == col & (moves[1] + 2) == row)) {
                                 if (getFigure(moves[0] + 1, moves[1] + 1) instanceof Pawn) {
@@ -481,14 +482,14 @@ public class Board {
                                     System.out.println("Not allowed move. You can move only to addiacent field");
                                     startMoveMethod = false;
                                 }
-                            }//pick the same pawn again
-                            else if (moves[0] == col & moves[1] == row) {
-                                startMoveMethod = false;
-                                System.out.println("Pawn is not picked anymore");
                             } else {
                                 System.out.println("Not allowed field");
                                 startMoveMethod = false;
                             }
+                        }//pick the same pawn again
+                        else if (moves[0] == col & moves[1] == row) {
+                            startMoveMethod = false;
+                            System.out.println("Pawn is not picked anymore");
                         } else {
                             System.out.println(" You can't move onto another Pawn");
                             startMoveMethod = false;
@@ -502,7 +503,7 @@ public class Board {
         if (startMoveMethod) {
             return new ArrayList<>(move(moves[0], moves[1], moves[2], moves[3]));
         }
-        return new ArrayList<Node>();
+        return new ArrayList<>();
     }
 
     public List<Node> computersMove() {
@@ -526,16 +527,7 @@ public class Board {
                 .filter(e -> getFigure((e.getCol() - 1), (e.getRow() + 1)) instanceof None)
                 .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 1, e.getRow() + 1))
                 .collect(Collectors.toSet());
-//        Set<Coordinates> moveUpToTheRight = computersPawns.stream()
-//                .filter(e -> e.getCol() < 7 && e.getRow() > 0)
-//                .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)) instanceof None)
-//                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() + 1, e.getRow() - 1))
-//                .collect(Collectors.toSet());
-//        Set<Coordinates> moveUpToTheLeft = computersPawns.stream()
-//                .filter(e -> e.getCol() > 0 && e.getRow() > 0)
-//                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)) instanceof None)
-//                .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 1, e.getRow() - 1))
-//                .collect(Collectors.toSet());
+
 
         Set<Coordinates> beatingDownToTheRight = computersPawns.stream()
                 .filter(e -> e.getCol() < 6 && e.getRow() < 6)
@@ -552,7 +544,7 @@ public class Board {
                 .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 2, e.getRow() + 2))
                 .collect(Collectors.toSet());
         Set<Coordinates> beatingUpToTheRight = computersPawns.stream()
-                .filter(e -> e.getCol() < 6 && e.getRow() > 2)
+                .filter(e -> e.getCol() < 6 && e.getRow() > 1)
                 .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)) instanceof Pawn)
                 .filter(e -> getFigure((e.getCol() + 1), (e.getRow() - 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
                 .filter(e -> getFigure((e.getCol() + 2), (e.getRow() - 2)) instanceof None)
@@ -561,7 +553,7 @@ public class Board {
         Set<Coordinates> beatingUpToTheLeft = computersPawns.stream()
                 .filter(e -> e.getCol() > 1 && e.getRow() > 1)
                 .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)) instanceof Pawn)
-                .filter(e -> getFigure((e.getCol() - 1), (e.getRow() - 1)).getColour() != getFigure(e.getCol(), e.getRow()).getColour())
+                .filter(e -> !getFigure((e.getCol() - 1), (e.getRow() - 1)).getColour().equals(getFigure(e.getCol(), e.getRow()).getColour()))
                 .filter(e -> getFigure((e.getCol() - 2), (e.getRow() - 2)) instanceof None)
                 .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getColToMove() - 2, e.getRowToMove() - 2))
                 .collect(Collectors.toSet());
