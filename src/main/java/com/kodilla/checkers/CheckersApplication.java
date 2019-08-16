@@ -1,6 +1,7 @@
 package com.kodilla.checkers;
 
 import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.EndWindow;
 import com.kodilla.checkers.logic.Welcome;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -58,9 +59,11 @@ public class CheckersApplication extends Application {
         Group root = new Group(grid);
         Scene scene = new Scene(root, 870, 870);
 
+
         scene.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+
                 board.enter(mouseEvent);
             }
         });
@@ -104,6 +107,7 @@ public class CheckersApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+
         Stage firstWindow = new Stage();
         firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
         firstWindow.initModality(Modality.WINDOW_MODAL);
@@ -111,6 +115,20 @@ public class CheckersApplication extends Application {
         firstWindow.setScene(new Welcome().openWelcomeWindow());
         firstWindow.show();
 
+        if (board.isEndGame()){
+            Stage endWindow = new Stage();
+            endWindow.setTitle("End of the Game");
+            endWindow.initModality(Modality.WINDOW_MODAL);
+            endWindow.initOwner(primaryStage);
+            endWindow.setScene(new EndWindow().openEndWindow());
+            endWindow.show();
+
+        }
+
+
+
 
     }
+
+
 }

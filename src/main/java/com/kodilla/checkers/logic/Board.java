@@ -12,13 +12,23 @@ import java.util.stream.Collectors;
 
 public class Board {
     private static String PLAYERS_COLOUR;
-    private static String COMP_COLOUR ;
+    private static String COMP_COLOUR;
     private static final int BOARD_WIDTH = 835;
+    private static final int BOARD_HIGHT = 835;
+    private static final int FIELD_WIDTH = 100;
+    private static final int FIELD_HIGHT = 100;
+    private static final int PADDING = 35;
 
     private List<BoardRow> rows = new ArrayList<>();
+
     private GridPane grid;
     private ImagePattern blackPawnPattern;
     private ImagePattern whitePawnPattern;
+    String BLACK = "BLACK";
+    String WHITE = "WHITE";
+    private ImagePattern PLAYERS_PATTERN;
+    private ImagePattern COMP_PATTERN;
+    private boolean endGame;
 
     public Board(GridPane grid, ImagePattern blackPawnPattern, ImagePattern whitePawnPattern) {
         this.grid = grid;
@@ -30,10 +40,6 @@ public class Board {
         }
     }
 
-    public void setFigure(int col, int row, Figure figure) {
-        rows.get(row).getCols().add(col, figure);
-        rows.get(row).getCols().remove(col + 1);
-    }
 
     public Figure getFigure(int col, int row) {
         return rows.get(row).getCols().get(col);
@@ -41,13 +47,26 @@ public class Board {
 
     public void setColours() {
         PLAYERS_COLOUR = Welcome.getPlayersColour();
-        if (PLAYERS_COLOUR.equals("WHITE")){
+        if (PLAYERS_COLOUR.equals("WHITE")) {
             COMP_COLOUR = "BLACK";
-        }else {COMP_COLOUR = "WHITE";}
+            COMP_PATTERN = blackPawnPattern;
+            PLAYERS_PATTERN = whitePawnPattern;
+        } else {
+            COMP_COLOUR = "WHITE";
+            COMP_PATTERN = whitePawnPattern;
+            PLAYERS_PATTERN = blackPawnPattern;
+
+        }
+    }
+
+    public void setFigure(int col, int row, Figure figure) {
+        rows.get(row).getCols().add(col, figure);
+        rows.get(row).getCols().remove(col + 1);
     }
 
     public void initBoard() {
         setColours();
+
 
         setFigure(0, 0, new Pawn(COMP_COLOUR));
         setFigure(2, 0, new Pawn(COMP_COLOUR));
@@ -78,7 +97,7 @@ public class Board {
 
     public List<Node> move(int col1, int row1, int col2, int row2) {
         Figure f = getFigure(col1, row1);
-        ImagePattern p = (f.getColour().equals(COMP_COLOUR)) ? blackPawnPattern : whitePawnPattern;
+        ImagePattern p = (f.getColour().equals(PLAYERS_COLOUR)) ? COMP_PATTERN : PLAYERS_PATTERN;
         Circle systemPawn = new Circle();
         systemPawn.setRadius(50);
         systemPawn.setFill(p);
@@ -97,42 +116,36 @@ public class Board {
             if (node instanceof Circle) {
                 if ((col1 + "-" + row1).equals(node.getId())) {
                     toRemove.add(node);
-                    System.out.println("obraz piona który mial byc poruszony - dodany do usuniecia");
                 }
                 if (ifDownToTheRight) {
                     if (((col1 + 1) + "-" + (row1 + 1)).equals(node.getId())) {
                         toRemove.add(node);
-                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                        setFigure(col1 + 1, row1 + 1, new None());
                     }
                 } else if (ifUpToTheRight) {
                     if (((col1 + 1) + "-" + (row1 - 1)).equals(node.getId())) {
                         toRemove.add(node);
-                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                        setFigure(col1 + 1, row1 - 1, new None());
                     }
                 } else if (ifUpToTheLeft) {
                     if (((col1 - 1) + "-" + (row1 - 1)).equals(node.getId())) {
                         toRemove.add(node);
-                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                        setFigure(col1 - 1, row1 - 1, new None());
                     }
                 } else if (ifDownToTheLeft) {
                     if (((col1 - 1) + "-" + (row1 + 1)).equals(node.getId())) {
                         toRemove.add(node);
-                        System.out.println("Ruch bicia. Obraz piona przeciwnika dodany do listy do usuniecia");
+                        setFigure(col1 - 1, row1 + 1, new None());
                     }
                 }
             }
         }
         setFigure(col1, row1, new None());
         setFigure(col2, row2, f);
-        if (ifDownToTheRight) {
-            setFigure(col1 + 1, row1 + 1, new None());
-        } else if (ifUpToTheRight) {
-            setFigure(col1 + 1, row1 - 1, new None());
-        } else if (ifUpToTheLeft) {
-            setFigure(col1 - 1, row1 - 1, new None());
-        } else if (ifDownToTheLeft) {
-            setFigure(col1 - 1, row1 + 1, new None());
+        if (row2 == 0 || row2 == 7){
+            endGame = true;
         }
+
         return toRemove;
     }
 
@@ -330,9 +343,9 @@ public class Board {
         int col = 0;
         int row = 0;
 
-        for (int x = 35; x < 835; x += 100) {
+        for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = 35; y < 835; y += 100) {
+                for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         System.out.println(col + "-" + row);
                         showMoveOption(col, row);
@@ -365,9 +378,9 @@ public class Board {
         int row = 0;
         boolean firstMove = true;
 
-        for (int x = 35; x < 835; x += 100) {
+        for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = 35; y < 835; y += 100) {
+                for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         // highligting picked pawn
                         if (getFigure(col, row) instanceof Pawn) {
@@ -412,9 +425,9 @@ public class Board {
 
         grid.getChildren().removeAll(picked);
 
-        for (int x = 35; x < BOARD_WIDTH; x += 100) {
+        for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = 35; y < 835; y += 100) {
+                for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
                     if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
                         if (!(getFigure(col, row) instanceof Pawn)) {
                             if (((moves[0] + 1) == col & (moves[1] - 1) == row)) {
@@ -593,6 +606,11 @@ public class Board {
 
         computersPawns.clear();
         return new ArrayList<>(move(col1, row1, col2, row2));
+    }
+
+
+    public boolean isEndGame() {
+        return endGame;
     }
 }
 

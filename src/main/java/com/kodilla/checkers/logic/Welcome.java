@@ -85,7 +85,7 @@ public class Welcome {
         return new Scene(window, 400, 400);
     }
 
-    static String getPlayersColour() {
+    public static String getPlayersColour() {
         return playersColour;
     }
 }
