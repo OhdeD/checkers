@@ -11,23 +11,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Board {
-    private static String PLAYERS_COLOUR;
-    private static String COMP_COLOUR;
+    private  String PLAYERS_COLOUR;
+    private  String COMP_COLOUR;
     private static final int BOARD_WIDTH = 835;
     private static final int BOARD_HIGHT = 835;
     private static final int FIELD_WIDTH = 100;
     private static final int FIELD_HIGHT = 100;
     private static final int PADDING = 35;
 
-    private List<BoardRow> rows = new ArrayList<>();
+    private static List<BoardRow> rows = new ArrayList<>();
 
     private GridPane grid;
+
     private ImagePattern blackPawnPattern;
     private ImagePattern whitePawnPattern;
-    String BLACK = "BLACK";
-    String WHITE = "WHITE";
     private ImagePattern PLAYERS_PATTERN;
     private ImagePattern COMP_PATTERN;
+
     private boolean endGame;
 
     public Board(GridPane grid, ImagePattern blackPawnPattern, ImagePattern whitePawnPattern) {
@@ -40,10 +40,10 @@ public class Board {
         }
     }
 
-
     public Figure getFigure(int col, int row) {
         return rows.get(row).getCols().get(col);
     }
+
 
     public void setColours() {
         PLAYERS_COLOUR = Welcome.getPlayersColour();
@@ -66,8 +66,6 @@ public class Board {
 
     public void initBoard() {
         setColours();
-
-
         setFigure(0, 0, new Pawn(COMP_COLOUR));
         setFigure(2, 0, new Pawn(COMP_COLOUR));
         setFigure(4, 0, new Pawn(COMP_COLOUR));
@@ -96,14 +94,10 @@ public class Board {
     }
 
     public List<Node> move(int col1, int row1, int col2, int row2) {
-        Figure f = getFigure(col1, row1);
-        ImagePattern p = (f.getColour().equals(PLAYERS_COLOUR)) ? COMP_PATTERN : PLAYERS_PATTERN;
-        Circle systemPawn = new Circle();
-        systemPawn.setRadius(50);
-        systemPawn.setFill(p);
-        systemPawn.setStrokeWidth(50);
-        systemPawn.setId(col2 + "-" + row2);
-        grid.add(systemPawn, col2, row2);
+        NewFigure movedFigure = new NewFigure(col1,row1,col2,row2,this);
+        grid.add(movedFigure.newFigureToGrid(), col2, row2);
+        setFigure(col1, row1, new None());
+        setFigure(col2, row2, movedFigure.newFigure());
 
         List<Node> toRemove = new ArrayList<>();
 
@@ -140,12 +134,10 @@ public class Board {
                 }
             }
         }
-        setFigure(col1, row1, new None());
-        setFigure(col2, row2, f);
-        if (row2 == 0 || row2 == 7){
+
+        if (row2 == 0 || row2 == 7) {
             endGame = true;
         }
-
         return toRemove;
     }
 
@@ -164,180 +156,68 @@ public class Board {
                 }
             }
         }
-//        for (int n = 0; n < 8; n++) {
-//            for (int m = 0; m < 8; m++) {
-//                if ((n + m) % 2 == 0 & (m < 2)) {
-//                    Circle systemPawn = new Circle();
-//                    systemPawn.setRadius(50);
-//                    systemPawn.setFill(whitePawnPattern);
-//                    systemPawn.setStrokeWidth(50);
-//                    grid.add(systemPawn, 0 + n, 0 + m);
-//                }
-//                if ((n + m) % 2 == 0 & (m > 5)) {
-//                    Circle playersPawn = new Circle();
-//                    playersPawn.setRadius(50);
-//                    playersPawn.setFill(blackPawnPattern);
-//                    playersPawn.setStrokeWidth(50);
-//                    grid.add(playersPawn, 0 + n, 0 + m);
-//                    grid.setHgap(0);
-//                    grid.setVgap(0);
-//                }
-//            }
-//        }
     }
 
     public void showMoveOption(int col, int row) {
-        List<Circle> highlight = new ArrayList<>();
-        Circle moveOption1 = new Circle();
-        Circle moveOption2 = new Circle();
-        Circle moveOption3 = new Circle();
-        Circle moveOption4 = new Circle();
-
-        highlight.add(moveOption1);
-        highlight.add(moveOption2);
-        highlight.add(moveOption3);
-        highlight.add(moveOption4);
-
-
-        for (Circle i : highlight) {
-            i.setId("highlight");
-            i.setRadius(50);
-            i.setStrokeWidth(50);
-            i.setFill(Color.rgb(255, 255, 128, 0.2));
-        }
         String colourOfPickedPawn = getFigure(col, row).getColour();
+        MoveOptionFigures c = new MoveOptionFigures();
+        BeatingOptionToGrid beating = new BeatingOptionToGrid(col, row, this);
+        MoveOptionToGrid moving = new MoveOptionToGrid(col, row, this);
 
         if (getFigure(col, row) instanceof Pawn) {
+
             if (col == 7 & row == 7) {
-                moveUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                beatingUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
+                addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
             }
             if (col == 0 & row == 0) {
-                //  moveDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
-                beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
+                addToGrid(beating.beatingDownToTheRight(col, row, c.show(1), colourOfPickedPawn));
             }
-            // if (col > 0 & col < 7 & row == 0) {
-            //    moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-            //    moveDownToTheRight(col, row, moveOption2, colourOfPickedPawn);
-            //}
             if (col > 1 & col < 6 & row == 0) {
-                beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                beatingDownToTheRight(col, row, moveOption2, colourOfPickedPawn);
+                addToGrid(beating.beatingDownToTheLeft(col, row, c.show(1), colourOfPickedPawn));
+                addToGrid(beating.beatingDownToTheRight(col, row, c.show(2), colourOfPickedPawn));
             }
             if (col > 0 & col < 7 & row == 7) {
-                moveUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                moveUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
-            }
-            if (col > 1 & col < 6 & row == 7) {
-                beatingUpToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-                beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
+                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
+                addToGrid(moving.moveUpToTheRight(col, row, c.show(2)));
+                if (col > 1 & col < 6 ) {
+                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
+                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(2), colourOfPickedPawn));
+                }
             }
             if (row > 0 & row < 7 & col == 0) {
-                moveUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
-                //  moveDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
-            }
-
-            if (row > 1 & row < 6 & col == 0) {
-                beatingUpToTheRight(col, row, moveOption2, colourOfPickedPawn);
-                beatingDownToTheRight(col, row, moveOption1, colourOfPickedPawn);
+                addToGrid(moving.moveUpToTheRight(col, row, c.show(1)));
+                if (row > 1 & row < 6) {
+                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(1), colourOfPickedPawn));
+                    addToGrid(beating.beatingDownToTheRight(col, row, c.show(2), colourOfPickedPawn));
+                }
             }
             if (row > 0 & row < 7 & col == 7) {
-                moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-                // moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
+                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
+                if (row > 1 & row < 6) {
+                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
+                    addToGrid(beating.beatingDownToTheLeft(col, row, c.show(2), colourOfPickedPawn));
+                }
             }
-            if (row > 1 & row < 6 & col == 7) {
-                beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-                beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-            }
-        }
-        if (row > 0 & row < 7 & col > 0 & col < 7) {
-            moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-            //  moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-            moveUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
-            //  moveDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
-        }
-        if (row > 1 & row < 6 & col > 1 & col < 6) {
-            beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-            beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-            beatingUpToTheRight(col, row, moveOption4, colourOfPickedPawn);
-            beatingDownToTheRight(col, row, moveOption3, colourOfPickedPawn);
-        }
-    }
-
-
-    private void moveUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
-        if (!(getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            grid.add(moveOption2, col + 1, row - 1);
-        }
-    }
-
-    private void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
-        if ((getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            if ((!getFigure((col + 1), (row - 1)).getColour().equals(colourOfPickedPawn))) {
-                if (!(getFigure((col + 2), (row - 2)) instanceof Pawn)) {
-                    grid.add(moveOption2, col + 2, row - 2);
+            if (row > 0 & row < 7 & col > 0 & col < 7) {
+                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
+                addToGrid(moving.moveUpToTheRight(col, row, c.show(2)));
+                if (row > 1 & row < 6 & col > 1 & col < 6) {
+                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
+                    addToGrid(beating.beatingDownToTheLeft(col, row, c.show(2), colourOfPickedPawn));
+                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(3), colourOfPickedPawn));
+                    addToGrid(beating.beatingDownToTheRight(col, row, c.show(0), colourOfPickedPawn));
                 }
             }
         }
     }
 
-    private void moveUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
-        if (!(getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            grid.add(moveOption1, col - 1, row - 1);
+    public void addToGrid(ToAddToGrid toAddToGrid) {
+        if (toAddToGrid != null) {
+            grid.add(toAddToGrid.getMoveOption(), toAddToGrid.getCol(), toAddToGrid.getRow());
         }
     }
 
-    private void beatingUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
-        if ((getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            if (!getFigure((col - 1), (row - 1)).getColour().equals(colourOfPickedPawn)) {
-                if (!(getFigure((col - 2), (row - 2)) instanceof Pawn)) {
-                    grid.add(moveOption1, col - 2, row - 2);
-                }
-            }
-        }
-    }
-
-    private void moveDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
-        if (!(getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-            grid.add(moveOption2, col + 1, row + 1);
-        }
-    }
-
-    private void beatingDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
-        if ((getFigure((col + 1), (row + 1)) instanceof Pawn)) {
-            if (!getFigure((col + 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
-                if (!(getFigure((col + 2), (row + 2)) instanceof Pawn)) {
-                    grid.add(moveOption2, col + 2, row + 2);
-                }
-            }
-        }
-    }
-
-    private void middleOnTheRight(int col, int row, Circle moveOption1, Circle moveOption2) {
-        String colourOfPickedPawn = getFigure(col, row).getColour();
-
-        moveDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-        beatingDownToTheLeft(col, row, moveOption1, colourOfPickedPawn);
-
-        moveUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-        beatingUpToTheLeft(col, row, moveOption2, colourOfPickedPawn);
-    }
-
-    private void moveDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
-        if (!(getFigure((col - 1), (row + 1)) instanceof Pawn)) {
-            grid.add(moveOption1, col - 1, row + 1);
-        }
-    }
-
-    private void beatingDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
-        if ((getFigure((col - 1), (row + 1)) instanceof Pawn)) {
-            if (!getFigure((col - 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
-                if (!(getFigure((col - 2), (row + 2)) instanceof Pawn)) {
-                    grid.add(moveOption1, col - 2, row + 2);
-                }
-            }
-        }
-    }
 
     public void enter(MouseEvent mouseEvent) {
         int col = 0;
@@ -608,9 +488,20 @@ public class Board {
         return new ArrayList<>(move(col1, row1, col2, row2));
     }
 
-
     public boolean isEndGame() {
         return endGame;
+    }
+
+    public  String getPlayersColour() {
+        return PLAYERS_COLOUR;
+    }
+
+    public ImagePattern getPLAYERS_PATTERN() {
+        return PLAYERS_PATTERN;
+    }
+
+    public ImagePattern getCOMP_PATTERN() {
+        return COMP_PATTERN;
     }
 }
 
