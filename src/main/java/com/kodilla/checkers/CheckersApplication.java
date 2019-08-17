@@ -96,7 +96,6 @@ public class CheckersApplication extends Application {
                         List<Node> computerNodesToRemove = board.computersMove();
                         grid.getChildren().removeAll(computerNodesToRemove);
                         System.out.println("It's computer's move now.");
-
                         firstMove = true;
                     }
                 }

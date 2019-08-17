@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic;
+package com.kodilla.checkers.logic.playersMove;
 
 import javafx.scene.shape.Circle;
 

@@ -1,5 +1,7 @@
-package com.kodilla.checkers.logic;
+package com.kodilla.checkers.logic.playersMove;
 
+import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.None;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;

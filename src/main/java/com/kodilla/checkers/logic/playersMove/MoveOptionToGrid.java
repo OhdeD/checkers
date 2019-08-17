@@ -1,5 +1,7 @@
-package com.kodilla.checkers.logic;
+package com.kodilla.checkers.logic.playersMove;
 
+import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.Pawn;
 import javafx.scene.shape.Circle;
 
 public class MoveOptionToGrid {
