@@ -11,15 +11,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Board {
-    private  String PLAYERS_COLOUR;
-    private  String COMP_COLOUR;
     private static final int BOARD_WIDTH = 835;
     private static final int BOARD_HIGHT = 835;
     private static final int FIELD_WIDTH = 100;
     private static final int FIELD_HIGHT = 100;
     private static final int PADDING = 35;
-
-    private static List<BoardRow> rows = new ArrayList<>();
+    private String PLAYERS_COLOUR;
+    private String COMP_COLOUR;
+    private List<BoardRow> rows = new ArrayList<>();
 
     private GridPane grid;
 
@@ -55,7 +54,6 @@ public class Board {
             COMP_COLOUR = "WHITE";
             COMP_PATTERN = whitePawnPattern;
             PLAYERS_PATTERN = blackPawnPattern;
-
         }
     }
 
@@ -94,51 +92,17 @@ public class Board {
     }
 
     public List<Node> move(int col1, int row1, int col2, int row2) {
-        NewFigure movedFigure = new NewFigure(col1,row1,col2,row2,this);
-        grid.add(movedFigure.newFigureToGrid(), col2, row2);
+        NewFigure newFigure = new NewFigure(col1,row1,col2,row2,this);
+        grid.add(newFigure.newFigureToGrid(), col2, row2);
+        setFigure(col2, row2, newFigure.newFigure());
+
         setFigure(col1, row1, new None());
-        setFigure(col2, row2, movedFigure.newFigure());
-
-        List<Node> toRemove = new ArrayList<>();
-
-        boolean ifUpToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == -2);
-        boolean ifDownToTheRight = ((col2 - col1) == 2) & ((row2 - row1) == 2);
-        boolean ifDownToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == 2);
-        boolean ifUpToTheLeft = ((col2 - col1) == -2) & ((row2 - row1) == -2);
-
-        for (Node node : grid.getChildren()) {
-            if (node instanceof Circle) {
-                if ((col1 + "-" + row1).equals(node.getId())) {
-                    toRemove.add(node);
-                }
-                if (ifDownToTheRight) {
-                    if (((col1 + 1) + "-" + (row1 + 1)).equals(node.getId())) {
-                        toRemove.add(node);
-                        setFigure(col1 + 1, row1 + 1, new None());
-                    }
-                } else if (ifUpToTheRight) {
-                    if (((col1 + 1) + "-" + (row1 - 1)).equals(node.getId())) {
-                        toRemove.add(node);
-                        setFigure(col1 + 1, row1 - 1, new None());
-                    }
-                } else if (ifUpToTheLeft) {
-                    if (((col1 - 1) + "-" + (row1 - 1)).equals(node.getId())) {
-                        toRemove.add(node);
-                        setFigure(col1 - 1, row1 - 1, new None());
-                    }
-                } else if (ifDownToTheLeft) {
-                    if (((col1 - 1) + "-" + (row1 + 1)).equals(node.getId())) {
-                        toRemove.add(node);
-                        setFigure(col1 - 1, row1 + 1, new None());
-                    }
-                }
-            }
-        }
+        OldFigure oldFigure = new OldFigure(col1,row1,col2,row2,this);
 
         if (row2 == 0 || row2 == 7) {
             endGame = true;
         }
-        return toRemove;
+        return oldFigure.remove(grid);
     }
 
     public void showBoard() {
@@ -159,65 +123,17 @@ public class Board {
     }
 
     public void showMoveOption(int col, int row) {
-        String colourOfPickedPawn = getFigure(col, row).getColour();
-        MoveOptionFigures c = new MoveOptionFigures();
-        BeatingOptionToGrid beating = new BeatingOptionToGrid(col, row, this);
-        MoveOptionToGrid moving = new MoveOptionToGrid(col, row, this);
+       PossibleMovesDisplay possibleMovesDisplay = new PossibleMovesDisplay(col,row,this);
+        addToGrid(possibleMovesDisplay.display());
+    }
 
-        if (getFigure(col, row) instanceof Pawn) {
-
-            if (col == 7 & row == 7) {
-                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
-                addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
-            }
-            if (col == 0 & row == 0) {
-                addToGrid(beating.beatingDownToTheRight(col, row, c.show(1), colourOfPickedPawn));
-            }
-            if (col > 1 & col < 6 & row == 0) {
-                addToGrid(beating.beatingDownToTheLeft(col, row, c.show(1), colourOfPickedPawn));
-                addToGrid(beating.beatingDownToTheRight(col, row, c.show(2), colourOfPickedPawn));
-            }
-            if (col > 0 & col < 7 & row == 7) {
-                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
-                addToGrid(moving.moveUpToTheRight(col, row, c.show(2)));
-                if (col > 1 & col < 6 ) {
-                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
-                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(2), colourOfPickedPawn));
-                }
-            }
-            if (row > 0 & row < 7 & col == 0) {
-                addToGrid(moving.moveUpToTheRight(col, row, c.show(1)));
-                if (row > 1 & row < 6) {
-                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(1), colourOfPickedPawn));
-                    addToGrid(beating.beatingDownToTheRight(col, row, c.show(2), colourOfPickedPawn));
-                }
-            }
-            if (row > 0 & row < 7 & col == 7) {
-                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
-                if (row > 1 & row < 6) {
-                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
-                    addToGrid(beating.beatingDownToTheLeft(col, row, c.show(2), colourOfPickedPawn));
-                }
-            }
-            if (row > 0 & row < 7 & col > 0 & col < 7) {
-                addToGrid(moving.moveUpToTheLeft(col, row, c.show(1)));
-                addToGrid(moving.moveUpToTheRight(col, row, c.show(2)));
-                if (row > 1 & row < 6 & col > 1 & col < 6) {
-                    addToGrid(beating.beatingUpToTheLeft(col, row, c.show(1), colourOfPickedPawn));
-                    addToGrid(beating.beatingDownToTheLeft(col, row, c.show(2), colourOfPickedPawn));
-                    addToGrid(beating.beatingUpToTheRight(col, row, c.show(3), colourOfPickedPawn));
-                    addToGrid(beating.beatingDownToTheRight(col, row, c.show(0), colourOfPickedPawn));
-                }
+    public void addToGrid(List<ToAddToGrid> toAddToGrid) {
+        for (ToAddToGrid i: toAddToGrid) {
+            if (i != null) {
+                grid.add(i.getMoveOption(), i.getCol(), i.getRow());
             }
         }
     }
-
-    public void addToGrid(ToAddToGrid toAddToGrid) {
-        if (toAddToGrid != null) {
-            grid.add(toAddToGrid.getMoveOption(), toAddToGrid.getCol(), toAddToGrid.getRow());
-        }
-    }
-
 
     public void enter(MouseEvent mouseEvent) {
         int col = 0;

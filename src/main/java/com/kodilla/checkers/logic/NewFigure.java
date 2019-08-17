@@ -22,7 +22,6 @@ public class NewFigure {
         p = (f.getColour().equals(board.getPlayersColour())) ? board.getCOMP_PATTERN() : board.getPLAYERS_PATTERN();
     }
     public Circle newFigureToGrid(){
-
         Circle systemPawn = new Circle();
         systemPawn.setRadius(50);
         systemPawn.setFill(p);
