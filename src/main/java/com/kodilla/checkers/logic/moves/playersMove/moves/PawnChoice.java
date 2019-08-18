@@ -12,12 +12,12 @@ import static com.kodilla.checkers.logic.Board.*;
 
 public class PawnChoice {
     private Board board;
+    private GridPane grid;
     private int BOARD_WIDTH;
     private int BOARD_HIGHT;
     private int FIELD_WIDTH;
     private int FIELD_HIGHT;
     private int PADDING;
-    private GridPane grid;
     private int[] moves = new int[8];
     private List<Node> picked;
 
