@@ -1,8 +1,7 @@
-package com.kodilla.checkers.logic.playersMove;
+package com.kodilla.checkers.logic.moves.playersMove;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;
-import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.computersMove;
+package com.kodilla.checkers.logic.moves.computersMove;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Coordinates;

@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.playersMove;
+package com.kodilla.checkers.logic.moves;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Figure;
@@ -12,7 +12,7 @@ public class NewFigure {
     private int row2;
     private Board board;
     private Figure f;
-    private  ImagePattern p;
+    private ImagePattern p;
 
     public NewFigure(int col1, int row1, int col2, int row2, Board board) {
         this.col1 = col1;
@@ -20,10 +20,12 @@ public class NewFigure {
         this.col2 = col2;
         this.row2 = row2;
         this.board = board;
+
         f = board.getFigure(col1, row1);
-        p = (f.getColour().equals(board.getPlayersColour())) ? board.getCOMP_PATTERN() : board.getPLAYERS_PATTERN();
+        p = (board.getPlayersColour().equals(f.getColour())) ? board.getCOMP_PATTERN() : board.getPLAYERS_PATTERN();
     }
-    public Circle newFigureToGrid(){
+
+    public Circle newFigureToGrid() {
         Circle systemPawn = new Circle();
         systemPawn.setRadius(50);
         systemPawn.setFill(p);
@@ -31,7 +33,8 @@ public class NewFigure {
         systemPawn.setId(col2 + "-" + row2);
         return systemPawn;
     }
-    public Figure newFigure(){
+
+    public Figure newFigure() {
         return f;
     }
 }

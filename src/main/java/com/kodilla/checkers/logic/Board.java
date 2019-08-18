@@ -1,10 +1,10 @@
 package com.kodilla.checkers.logic;
 
-import com.kodilla.checkers.logic.computersMove.ComputersMove;
-import com.kodilla.checkers.logic.playersMove.NewFigure;
-import com.kodilla.checkers.logic.playersMove.OldFigure;
-import com.kodilla.checkers.logic.playersMove.PossibleMovesDisplay;
-import com.kodilla.checkers.logic.playersMove.ToAddToGrid;
+import com.kodilla.checkers.logic.moves.computersMove.ComputersMove;
+import com.kodilla.checkers.logic.moves.NewFigure;
+import com.kodilla.checkers.logic.moves.OldFigure;
+import com.kodilla.checkers.logic.moves.playersMove.PossibleMovesDisplay;
+import com.kodilla.checkers.logic.moves.playersMove.ToAddToGrid;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -71,9 +71,9 @@ public class Board {
     }
 
     public List<Node> move(int col1, int row1, int col2, int row2) {
-        NewFigure newFigure = new NewFigure(col1, row1, col2, row2, this);
-        grid.add(newFigure.newFigureToGrid(), col2, row2);
-        setFigure(col2, row2, newFigure.newFigure());
+        NewFigure f = new NewFigure(col1, row1, col2, row2, this);
+        grid.add(f.newFigureToGrid(), col2, row2);
+        setFigure(col2, row2, f.newFigure());
 
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
@@ -310,6 +310,7 @@ public class Board {
         int row1 = computersMove.pickMove().getRow();
         int col2 = computersMove.pickMove().getColToMove();
         int row2 = computersMove.pickMove().getRowToMove();
+        System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
 
         return new ArrayList<>(move(col1, row1, col2, row2));
     }

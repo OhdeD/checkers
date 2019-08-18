@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.playersMove;
+package com.kodilla.checkers.logic.moves;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.None;

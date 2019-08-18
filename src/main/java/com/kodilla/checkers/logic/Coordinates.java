@@ -28,4 +28,13 @@ public class Coordinates {
     public int getRowToMove() {
         return rowToMove;
     }
+
+    @Override
+    public String toString() {
+        return  "col=" + col +
+                ", row=" + row +
+                ", colToMove=" + colToMove +
+                ", rowToMove=" + rowToMove +
+                '}';
+    }
 }
