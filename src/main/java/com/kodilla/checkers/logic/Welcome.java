@@ -17,8 +17,8 @@ import javafx.scene.text.FontWeight;
 import java.awt.*;
 
 public class Welcome {
-    private static String playersColour = "BLACK";
-    private static boolean readyBoard = false;
+    private  String playersColour;
+    private  boolean startBoard = false;
     private Image boardPart = new Image("file:src/main/resources/windowBackground.png");
     private BackgroundSize size = new BackgroundSize(400, 400, false, false, true, true);
     private BackgroundImage windowBackground = new BackgroundImage(boardPart, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
@@ -52,7 +52,7 @@ public class Welcome {
             @Override
             public void handle(ActionEvent event) {
                 playersColour = "WHITE";
-                readyBoard = true;
+                startBoard = true;
             }
         });
 
@@ -66,7 +66,7 @@ public class Welcome {
             @Override
             public void handle(ActionEvent event) {
                 playersColour = "BLACK";
-                readyBoard = true;
+                startBoard = true;
             }
         });
 
@@ -85,7 +85,11 @@ public class Welcome {
         return new Scene(window, 400, 400);
     }
 
-    public static String getPlayersColour() {
+    public String getPlayersColour() {
         return playersColour;
+    }
+
+    public boolean isStartBoard() {
+        return startBoard;
     }
 }

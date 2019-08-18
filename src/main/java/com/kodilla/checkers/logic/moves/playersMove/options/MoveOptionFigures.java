@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.moves.playersMove;
+package com.kodilla.checkers.logic.moves.playersMove.options;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveOptionFigures {
-    List<Circle> highlight = new ArrayList<>();
+   private List<Circle> highlight = new ArrayList<>();
 
     public MoveOptionFigures() {
         Circle moveOption1 = new Circle();

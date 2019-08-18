@@ -3,12 +3,12 @@ package com.kodilla.checkers.logic;
 import com.kodilla.checkers.logic.moves.computersMove.ComputersMove;
 import com.kodilla.checkers.logic.moves.NewFigure;
 import com.kodilla.checkers.logic.moves.OldFigure;
-import com.kodilla.checkers.logic.moves.playersMove.PossibleMovesDisplay;
-import com.kodilla.checkers.logic.moves.playersMove.ToAddToGrid;
+import com.kodilla.checkers.logic.moves.playersMove.moves.PawnChoice;
+import com.kodilla.checkers.logic.moves.playersMove.options.PossibleMovesDisplay;
+import com.kodilla.checkers.logic.moves.playersMove.options.ToAddToGrid;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -23,6 +23,7 @@ public class Board {
     private String PLAYERS_COLOUR;
     private String COMP_COLOUR;
     private List<BoardRow> rows = new ArrayList<>();
+    private String winner;
 
     private GridPane grid;
 
@@ -31,7 +32,7 @@ public class Board {
     private ImagePattern PLAYERS_PATTERN;
     private ImagePattern COMP_PATTERN;
 
-    private boolean endGame;
+    private boolean endGame = false;
 
     public Board(GridPane grid, ImagePattern blackPawnPattern, ImagePattern whitePawnPattern) {
         this.grid = grid;
@@ -47,8 +48,8 @@ public class Board {
         return rows.get(row).getCols().get(col);
     }
 
-    public void setColours() {
-        PLAYERS_COLOUR = Welcome.getPlayersColour();
+    public void setColours(String playersColour) {
+        PLAYERS_COLOUR = playersColour;
         if (PLAYERS_COLOUR.equals("WHITE")) {
             COMP_COLOUR = "BLACK";
             COMP_PATTERN = blackPawnPattern;
@@ -65,8 +66,8 @@ public class Board {
         rows.get(row).getCols().remove(col + 1);
     }
 
-    public void initBoard() {
-        setColours();
+    public void initBoard(String playersColour) {
+        setColours(playersColour);
         new StarterSet(this, COMP_COLOUR, PLAYERS_COLOUR).start();
     }
 
@@ -78,9 +79,15 @@ public class Board {
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
 
-        if (row2 == 0 || row2 == 7) {
+        if (row2 == 0) {
             endGame = true;
+            winner = "YOU! \n CONGRATULATIONS!";
         }
+        if (row2 == 7) {
+            endGame = true;
+            winner = "Computer player \n Maybe next time ;)";
+        }
+
         return oldFigure.remove(grid);
     }
 
@@ -89,7 +96,7 @@ public class Board {
         for (int col = 0; col < 8; col++) {
             for (int row = 0; row < 8; row++) {
                 if (getFigure(col, row) instanceof Pawn) {
-                    ImagePattern p = (getFigure(col, row).getColour().equals(COMP_COLOUR)) ? blackPawnPattern : whitePawnPattern;
+                    ImagePattern p = (getFigure(col, row).getColour().equals(COMP_COLOUR)) ? COMP_PATTERN : PLAYERS_PATTERN;
                     Circle systemPawn = new Circle();
                     systemPawn.setRadius(50);
                     systemPawn.setFill(p);
@@ -121,7 +128,7 @@ public class Board {
         for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + FIELD_WIDTH))) {
                 for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
-                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y +FIELD_HIGHT))) {
+                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + FIELD_HIGHT))) {
                         System.out.println(col + "-" + row);
                         showMoveOption(col, row);
                     }
@@ -144,52 +151,15 @@ public class Board {
         return toRemove;
     }
 
-    int[] moves = new int[8];
-
-    List<Node> picked = new ArrayList<>();
+    private int[] moves;
+    private List<Node> picked;
 
     public boolean startMove(MouseEvent mouseEvent) {
-        int col = 0;
-        int row = 0;
-        boolean firstMove = true;
-
-        for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
-            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
-                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
-                        // highligting picked pawn
-                        if (getFigure(col, row) instanceof Pawn) {
-                            ImagePattern p = (getFigure(col, row).getColour().equals(COMP_COLOUR)) ? blackPawnPattern : whitePawnPattern;
-                            Circle c = new Circle();
-                            c.setRadius(50);
-                            c.setFill(Color.rgb(102, 153, 255, 0.2));
-                            c.setStrokeWidth(50);
-                            c.setId("blue");
-                            grid.add(c, col, row);
-
-                            for (Node node : grid.getChildren()) {
-                                if (node instanceof Circle) {
-                                    if ("blue".equals(node.getId())) {
-                                        picked.add(node);
-                                    }
-                                }
-                            }
-
-                            moves[0] = col;
-                            moves[1] = row;
-                            System.out.println("col & row added to table ");
-                            return firstMove;
-                        } else {
-                            System.out.println("You have to pick some Pawn");
-                            firstMove = false;
-                        }
-                    }
-                    row++;
-                }
-            }
-            col += 1;
-        }
-        return firstMove;
+        PawnChoice p = new PawnChoice(this, grid);
+        boolean startMoveDone = p.pawnChoice(mouseEvent);
+        moves = p.getMoves();
+        picked = p.getPicked();
+        return startMoveDone;
     }
 
     public List<Node> endMove(MouseEvent mouseEvent) {
@@ -286,7 +256,7 @@ public class Board {
                         }//pick the same pawn again
                         else if (moves[0] == col & moves[1] == row) {
                             startMoveMethod = false;
-                            System.out.println("Pawn is not picked anymore");
+                            System.out.println("This pawn is not picked anymore");
                         } else {
                             System.out.println(" You can't move onto another Pawn");
                             startMoveMethod = false;
@@ -305,11 +275,12 @@ public class Board {
 
     public List<Node> computersMove() {
         ComputersMove computersMove = new ComputersMove(this);
+        Coordinates c = computersMove.pickMove();
 
-        int col1 = computersMove.pickMove().getCol();
-        int row1 = computersMove.pickMove().getRow();
-        int col2 = computersMove.pickMove().getColToMove();
-        int row2 = computersMove.pickMove().getRowToMove();
+        int col1 = c.getCol();
+        int row1 = c.getRow();
+        int col2 = c.getColToMove();
+        int row2 = c.getRowToMove();
         System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
 
         return new ArrayList<>(move(col1, row1, col2, row2));
@@ -333,6 +304,30 @@ public class Board {
 
     public ImagePattern getCOMP_PATTERN() {
         return COMP_PATTERN;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public static int getBoardWidth() {
+        return BOARD_WIDTH;
+    }
+
+    public static int getBoardHight() {
+        return BOARD_HIGHT;
+    }
+
+    public static int getFieldWidth() {
+        return FIELD_WIDTH;
+    }
+
+    public static int getFieldHight() {
+        return FIELD_HIGHT;
+    }
+
+    public static int getPADDING() {
+        return PADDING;
     }
 }
 

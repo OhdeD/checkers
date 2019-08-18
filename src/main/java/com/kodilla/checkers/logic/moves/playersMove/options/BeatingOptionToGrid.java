@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.moves.playersMove;
+package com.kodilla.checkers.logic.moves.playersMove.options;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;
@@ -9,15 +9,11 @@ import java.util.List;
 
 
 public class BeatingOptionToGrid {
-    private int col;
-    private int row;
-    private Board board;
+      private Board board;
     private List<ToAddToGrid> toAddToGrid = new ArrayList<>();
 
-    public BeatingOptionToGrid(int col, int row, Board board) {
-        this.col = col;
-        this.row = row;
-        this.board = board;
+    public BeatingOptionToGrid( Board board) {
+                this.board = board;
     }
 
     public void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {

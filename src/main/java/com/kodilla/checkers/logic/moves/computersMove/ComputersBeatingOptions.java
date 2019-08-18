@@ -53,6 +53,7 @@ public class ComputersBeatingOptions {
         beatings.add(beatingUpToTheLeft);
         beatings.add(beatingDownToTheRight);
         beatings.add(beatingDownToTheLeft);
+        System.out.println("mozliwosci bicia: " + (beatingDownToTheLeft.size()+beatingDownToTheRight.size() + beatingUpToTheLeft.size() + beatingUpToTheRight.size()));
 
         return beatings;
 }

@@ -22,7 +22,7 @@ public class NewFigure {
         this.board = board;
 
         f = board.getFigure(col1, row1);
-        p = (board.getPlayersColour().equals(f.getColour())) ? board.getCOMP_PATTERN() : board.getPLAYERS_PATTERN();
+        p = (board.getPlayersColour().equals(f.getColour())) ?  board.getPLAYERS_PATTERN() : board.getCOMP_PATTERN() ;
     }
 
     public Circle newFigureToGrid() {

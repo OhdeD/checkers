@@ -2,32 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18ae6108-d732-4080-8ccd-f2fa30554da1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/moves/MarkingPickedPawn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/moves/PawnChoice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/board.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/board.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/CheckersApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/computersMove/ComputersBeatingOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/computersMove/ComputersMove.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/computersMove/ComputersMoveOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/computersMove/ComputersPawns.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/BeatingOptionToGrid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/MoveOptionFigures.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/MoveOptionToGrid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/NewFigure.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/OldFigure.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/PossibleMovesDisplay.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/playersMove/ToAddToGrid.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/EndWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/EndWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/Welcome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/NewFigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/NewFigure.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/checkers/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersBeatingOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersMoveOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersPawns.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/BeatingOptionToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/BeatingOptionToGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/MoveOptionFigures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionFigures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/MoveOptionToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionToGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/NewFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/OldFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/OldFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/PossibleMovesDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/PossibleMovesDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/ToAddToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/ToAddToGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/BeatingOptionToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/BeatingOptionToGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionFigures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/MoveOptionFigures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/MoveOptionToGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/PossibleMovesDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/PossibleMovesDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/ToAddToGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/ToAddToGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/board.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/board.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,92 +63,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="176">
+              <caret line="80" selection-start-line="80" selection-end-line="80" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#12696#12697#0" expanded="true" />
+                <element signature="e#12726#12727#0" expanded="true" />
+                <element signature="e#12766#12767#0" expanded="true" />
+                <element signature="e#12803#12804#0" expanded="true" />
+                <element signature="e#12841#12842#0" expanded="true" />
+                <element signature="e#12875#12876#0" expanded="true" />
+                <element signature="e#12923#12924#0" expanded="true" />
+                <element signature="e#12961#12962#0" expanded="true" />
+                <element signature="e#13006#13007#0" expanded="true" />
+                <element signature="e#13041#13042#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/BeatingOptionToGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="312" column="123" lean-forward="true" selection-start-line="312" selection-start-column="8" selection-end-line="312" selection-end-column="123" />
+            <state relative-caret-position="-440">
+              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1536#1537#0" expanded="true" />
-                <element signature="e#1591#1592#0" expanded="true" />
-                <element signature="e#14244#14245#0" expanded="true" />
-                <element signature="e#14321#14322#0" expanded="true" />
-                <element signature="e#14393#14394#0" expanded="true" />
-                <element signature="e#14479#14480#0" expanded="true" />
-                <element signature="e#14559#14560#0" expanded="true" />
+                <element signature="e#443#444#0" expanded="true" />
+                <element signature="e#485#486#0" expanded="true" />
+                <element signature="e#2535#2536#0" expanded="true" />
+                <element signature="e#2569#2570#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMove.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/PossibleMovesDisplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="63" lean-forward="true" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
+            <state relative-caret-position="391">
+              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-207">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Coordinates.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-              <folding>
-                <element signature="e#465#466#0" expanded="true" />
-                <element signature="e#497#498#0" expanded="true" />
-                <element signature="e#530#531#0" expanded="true" />
-                <element signature="e#562#563#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,13 +142,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Figure.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/None.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/BoardRow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Option.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/MoveOpition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/MoveOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/StartMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/SetFigure.java" />
@@ -184,7 +150,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/MouseEnter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/MouseEnter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/MouseEnterExit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Pawn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Beating.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/PickedPawn.java" />
@@ -200,7 +165,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/AvaliableMoves.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/AvaliableMovesDisplay.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/PossibleMovesDisplay.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/ComputersPawns.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/ComputersMoveOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/ComputersBeatingOptions.java" />
@@ -213,12 +177,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersMoveOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/computersMove/ComputersMove.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/playersMove/NewFigure.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Coordinates.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMove.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MarkingPickedPawn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/PawnChoice.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/moves/MarkingPickedPawn.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/MoveOptionFigures.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/PossibleMovesDisplay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/BeatingOptionToGrid.java" />
       </list>
     </option>
   </component>
@@ -303,6 +277,41 @@
               <item name="logic" type="462c0819:PsiDirectoryNode" />
               <item name="moves" type="462c0819:PsiDirectoryNode" />
               <item name="computersMove" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="checkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+              <item name="moves" type="462c0819:PsiDirectoryNode" />
+              <item name="playersMove" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="checkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+              <item name="moves" type="462c0819:PsiDirectoryNode" />
+              <item name="playersMove" type="462c0819:PsiDirectoryNode" />
+              <item name="moves" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="checkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="checkers" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+              <item name="moves" type="462c0819:PsiDirectoryNode" />
+              <item name="playersMove" type="462c0819:PsiDirectoryNode" />
+              <item name="options" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="checkers" type="b2602c69:ProjectViewProjectNode" />
@@ -407,12 +416,12 @@
       <workItem from="1565259773351" duration="63340000" />
       <workItem from="1565677124689" duration="770000" />
       <workItem from="1565852096467" duration="27634000" />
-      <workItem from="1565905807146" duration="91977000" />
+      <workItem from="1565905807146" duration="108584000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252631000" />
+    <option name="totallyTimeSpent" value="269238000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -427,7 +436,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1716418" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21428572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -436,7 +445,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30010834" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3716143" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.6749729" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -447,6 +456,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.42795232" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.20910075" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -468,13 +478,17 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java</url>
           <line>23</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/checkers$CheckersApplication.ic" NAME="CheckersApplication Coverage Results" MODIFIED="1566126469337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.kodilla.checkers.*</FILTER>
+    </SUITE>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/White.jpg" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/background.jpg" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/javafx/application/Application.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -608,32 +622,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3156#3157#0" expanded="true" />
-            <element signature="e#3192#3193#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Figure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,62 +638,6 @@
             <element signature="e#168#169#0" expanded="true" />
             <element signature="e#215#216#0" expanded="true" />
             <element signature="e#244#245#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionFigures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/StarterSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/MoveOptionToGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1101#1102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/ToAddToGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/PossibleMovesDisplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/BeatingOptionToGrid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
-          <folding>
-            <element signature="e#2555#2556#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,60 +659,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/com/sun/glass/ui/InvokeLaterDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1042">
+          <caret line="92" column="30" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMove.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/jre/lib/rt.jar!/sun/reflect/NativeConstructorAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="63" lean-forward="true" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="86">
+          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/jre/lib/rt.jar!/sun/reflect/DelegatingConstructorAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="83">
+          <caret line="325" selection-start-line="325" selection-end-line="325" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/security/AccessController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="370" column="31" selection-start-line="370" selection-start-column="31" selection-end-line="370" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Coordinates.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="164">
+          <caret line="13" selection-start-line="1" selection-end-line="13" />
           <folding>
             <element signature="e#465#466#0" expanded="true" />
             <element signature="e#497#498#0" expanded="true" />
@@ -786,10 +707,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1399">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Welcome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1002">
+          <caret line="72" column="18" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3134#3135#0" expanded="true" />
+            <element signature="e#3170#3171#0" expanded="true" />
+            <element signature="e#3207#3208#0" expanded="true" />
+            <element signature="e#3240#3241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersPawns.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMoveOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersBeatingOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="44" column="97" selection-start-line="44" selection-start-column="97" selection-end-line="44" selection-end-column="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/computersMove/ComputersMove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/NewFigure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/StarterSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/EndWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/CheckersApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        <state relative-caret-position="176">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -798,17 +809,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="312" column="123" lean-forward="true" selection-start-line="312" selection-start-column="8" selection-end-line="312" selection-end-column="123" />
+        <state relative-caret-position="210">
+          <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1536#1537#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#14244#14245#0" expanded="true" />
-            <element signature="e#14321#14322#0" expanded="true" />
-            <element signature="e#14393#14394#0" expanded="true" />
-            <element signature="e#14479#14480#0" expanded="true" />
-            <element signature="e#14559#14560#0" expanded="true" />
+            <element signature="e#12696#12697#0" expanded="true" />
+            <element signature="e#12726#12727#0" expanded="true" />
+            <element signature="e#12766#12767#0" expanded="true" />
+            <element signature="e#12803#12804#0" expanded="true" />
+            <element signature="e#12841#12842#0" expanded="true" />
+            <element signature="e#12875#12876#0" expanded="true" />
+            <element signature="e#12923#12924#0" expanded="true" />
+            <element signature="e#12961#12962#0" expanded="true" />
+            <element signature="e#13006#13007#0" expanded="true" />
+            <element signature="e#13041#13042#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/moves/PawnChoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2313#2314#0" expanded="true" />
+            <element signature="e#2341#2342#0" expanded="true" />
+            <element signature="e#2378#2379#0" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/moves/MarkingPickedPawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/MoveOptionToGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/ToAddToGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/MoveOptionFigures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/PossibleMovesDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kodilla/checkers/logic/moves/playersMove/options/BeatingOptionToGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-440">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <folding>
+            <element signature="e#443#444#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
+            <element signature="e#2569#2570#0" expanded="true" />
           </folding>
         </state>
       </provider>

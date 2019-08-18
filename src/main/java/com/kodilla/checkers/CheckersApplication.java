@@ -26,6 +26,7 @@ public class CheckersApplication extends Application {
     private Image board = new Image("file:src/main/resources/board.png");
     private Image blackPawn = new Image("file:src/main/resources/pionekczarny.png");
     private Image whitePawn = new Image("file:src/main/resources/PIONEKbialy.png");
+    private String playersColour = "WHITE";
 
     public static void main(String[] args) {
         launch(args);
@@ -41,6 +42,7 @@ public class CheckersApplication extends Application {
         ImagePattern whitePawnPattern = new ImagePattern(whitePawn, 0, 0, 1, 1, true);
 
 
+
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(35, 35, 35, 35));
         grid.setBackground(background);
@@ -53,7 +55,7 @@ public class CheckersApplication extends Application {
         }
 
         Board board = new Board(grid, blackPawnPattern, whitePawnPattern);
-        board.initBoard();
+        board.initBoard(playersColour);
         board.showBoard();
 
         Group root = new Group(grid);
@@ -97,6 +99,16 @@ public class CheckersApplication extends Application {
                         grid.getChildren().removeAll(computerNodesToRemove);
                         System.out.println("It's computer's move now.");
                         firstMove = true;
+
+                        if (board.isEndGame()) {
+                            Stage endWindow = new Stage();
+                            endWindow.setTitle("End of the Game");
+                            endWindow.initModality(Modality.WINDOW_MODAL);
+                            endWindow.initOwner(primaryStage);
+                            endWindow.setScene(new EndWindow(board.getWinner()).openEndWindow());
+                            endWindow.show();
+
+                        }
                     }
                 }
             }
@@ -106,28 +118,11 @@ public class CheckersApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         Stage firstWindow = new Stage();
         firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
         firstWindow.initModality(Modality.WINDOW_MODAL);
         firstWindow.initOwner(primaryStage);
         firstWindow.setScene(new Welcome().openWelcomeWindow());
         firstWindow.show();
-
-        if (board.isEndGame()){
-            Stage endWindow = new Stage();
-            endWindow.setTitle("End of the Game");
-            endWindow.initModality(Modality.WINDOW_MODAL);
-            endWindow.initOwner(primaryStage);
-            endWindow.setScene(new EndWindow().openEndWindow());
-            endWindow.show();
-
-        }
-
-
-
-
     }
-
-
 }

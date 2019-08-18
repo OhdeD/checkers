@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.moves.playersMove;
+package com.kodilla.checkers.logic.moves.playersMove.options;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;

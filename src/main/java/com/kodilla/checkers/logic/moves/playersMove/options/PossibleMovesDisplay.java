@@ -1,4 +1,4 @@
-package com.kodilla.checkers.logic.moves.playersMove;
+package com.kodilla.checkers.logic.moves.playersMove.options;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;
@@ -14,14 +14,14 @@ public class PossibleMovesDisplay {
     private BeatingOptionToGrid beating;
     private MoveOptionToGrid moving;
     private MoveOptionFigures c = new MoveOptionFigures();
-    List<ToAddToGrid> toAddToGrid = new ArrayList<>();
+    private List<ToAddToGrid> toAddToGrid = new ArrayList<>();
 
     public PossibleMovesDisplay(int col, int row, Board board) {
         this.col = col;
         this.row = row;
         this.board = board;
         colourOfPickedPawn = board.getFigure(col, row).getColour();
-        beating = new BeatingOptionToGrid(col, row, board);
+        beating = new BeatingOptionToGrid(board);
         moving = new MoveOptionToGrid(col, row, board);
     }
 

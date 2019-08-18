@@ -17,7 +17,11 @@ public class EndWindow {
     private BackgroundSize size = new BackgroundSize(400, 400, false, false, true, true);
     private BackgroundImage windowBackground = new BackgroundImage(boardPart, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
     private Background background = new Background(windowBackground);
+    private String winner;
 
+    public EndWindow(String winner) {
+        this.winner = winner;
+    }
 
     public Scene openEndWindow() {
 
@@ -26,14 +30,19 @@ public class EndWindow {
         endText.setPadding(new Insets(30, 0, 0, 0));
         endText.setTextFill(Color.WHITE);
 
-        Label winnerIs = new Label("The winner is:");
+        Label winnerIs = new Label("The winner is:" );
         winnerIs.setFont(Font.font("Vineta BT", FontWeight.BOLD, FontPosture.REGULAR, 15));
         winnerIs.setPadding(new Insets(10, 0, 0, 0));
         winnerIs.setTextFill(Color.WHITE);
 
+        Label whoWon = new Label("" + winner );
+        whoWon.setFont(Font.font("Vineta BT", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        whoWon.setPadding(new Insets(10, 0, 0, 0));
+        whoWon.setTextFill(Color.WHITE);
+
 
         VBox view = new VBox(0);
-        view.getChildren().addAll(endText, winnerIs);
+        view.getChildren().addAll(endText, winnerIs, whoWon);
         view.setAlignment(Pos.CENTER);
 
         StackPane window = new StackPane();
