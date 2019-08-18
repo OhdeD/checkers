@@ -7,11 +7,9 @@ import java.util.*;
 
 public class ComputersMove {
     private Board board;
-    private ComputersPawns computersPawns;
 
     public ComputersMove(Board board) {
         this.board = board;
-        computersPawns = new ComputersPawns(board, board.getCOMP_COLOUR());
     }
 
     public Coordinates pickMove() {

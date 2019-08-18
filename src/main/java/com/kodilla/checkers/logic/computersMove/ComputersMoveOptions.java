@@ -18,7 +18,6 @@ public class ComputersMoveOptions {
     }
 
     public Set<Set<Coordinates>> moveOptions() {
-
         Set<Coordinates> moveDownToTheRight = computersPawns.getComputersPawns().stream()
                 .filter(e -> e.getCol() < 7 && e.getRow() < 7)
                 .filter(e -> board.getFigure((e.getCol() + 1), (e.getRow() + 1)) instanceof None)
@@ -36,4 +35,5 @@ public class ComputersMoveOptions {
 
         return moves;
     }
+
 }

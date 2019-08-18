@@ -6,13 +6,13 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class NewFigure {
-    int col1;
-    int row1;
-    int col2;
-    int row2;
-    Board board;
-    Figure f;
-    ImagePattern p;
+    private int col1;
+    private int row1;
+    private int col2;
+    private int row2;
+    private Board board;
+    private Figure f;
+    private  ImagePattern p;
 
     public NewFigure(int col1, int row1, int col2, int row2, Board board) {
         this.col1 = col1;

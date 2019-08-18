@@ -4,12 +4,15 @@ import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BeatingOptionToGrid {
-    int col;
-    int row;
-    Board board;
+    private int col;
+    private int row;
+    private Board board;
+    private List<ToAddToGrid> toAddToGrid = new ArrayList<>();
 
     public BeatingOptionToGrid(int col, int row, Board board) {
         this.col = col;
@@ -17,45 +20,47 @@ public class BeatingOptionToGrid {
         this.board = board;
     }
 
-    public ToAddToGrid beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
+    public void beatingUpToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if ((board.getFigure((col + 1), (row - 1)) instanceof Pawn)) {
             if ((!board.getFigure((col + 1), (row - 1)).getColour().equals(colourOfPickedPawn))) {
                 if (!(board.getFigure((col + 2), (row - 2)) instanceof Pawn)) {
-                    return new ToAddToGrid(moveOption2, col + 2, row - 2);
+                    toAddToGrid.add(new ToAddToGrid(moveOption2, col + 2, row - 2));
                 }
             }
         }
-        return null;
     }
-    public ToAddToGrid beatingUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
+
+    public void beatingUpToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
         if ((board.getFigure((col - 1), (row - 1)) instanceof Pawn)) {
             if (!board.getFigure((col - 1), (row - 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(board.getFigure((col - 2), (row - 2)) instanceof Pawn)) {
-                    new ToAddToGrid(moveOption1, col - 2, row - 2);
+                    toAddToGrid.add(new ToAddToGrid(moveOption1, col - 2, row - 2));
                 }
             }
         }
-
-        return null;
     }
-    public ToAddToGrid beatingDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
+
+    public void beatingDownToTheRight(int col, int row, Circle moveOption2, String colourOfPickedPawn) {
         if ((board.getFigure((col + 1), (row + 1)) instanceof Pawn)) {
             if (!board.getFigure((col + 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(board.getFigure((col + 2), (row + 2)) instanceof Pawn)) {
-                    new ToAddToGrid(moveOption2, col + 2, row + 2);
+                    toAddToGrid.add(new ToAddToGrid(moveOption2, col + 2, row + 2));
                 }
             }
         }
-        return null;
     }
-  public ToAddToGrid beatingDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
+
+    public void beatingDownToTheLeft(int col, int row, Circle moveOption1, String colourOfPickedPawn) {
         if ((board.getFigure((col - 1), (row + 1)) instanceof Pawn)) {
             if (!board.getFigure((col - 1), (row + 1)).getColour().equals(colourOfPickedPawn)) {
                 if (!(board.getFigure((col - 2), (row + 2)) instanceof Pawn)) {
-                    new ToAddToGrid(moveOption1, col - 2, row + 2);
+                    toAddToGrid.add(new ToAddToGrid(moveOption1, col - 2, row + 2));
                 }
             }
         }
-      return null;
+    }
+
+    public List<ToAddToGrid> getToAddToGrid() {
+        return toAddToGrid;
     }
 }

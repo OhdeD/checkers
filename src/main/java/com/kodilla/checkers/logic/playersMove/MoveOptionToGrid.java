@@ -4,10 +4,14 @@ import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Pawn;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MoveOptionToGrid {
-    int col;
-    int row;
-    Board board;
+   private int col;
+    private int row;
+    private Board board;
+    private List<ToAddToGrid> toAddToGrid = new ArrayList<>();
 
     public MoveOptionToGrid(int col, int row, Board board) {
         this.col = col;
@@ -15,19 +19,20 @@ public class MoveOptionToGrid {
         this.board = board;
     }
 
-    public ToAddToGrid moveUpToTheRight(int col, int row, Circle moveOption2) {
+    public void moveUpToTheRight(int col, int row, Circle moveOption2) {
         if (!(board.getFigure((col + 1), (row - 1)) instanceof Pawn)) {
-            return new ToAddToGrid(moveOption2, col + 1, row - 1);
+            toAddToGrid.add(new ToAddToGrid(moveOption2, col + 1, row - 1));
         }
-        return null;
     }
 
 
-    public ToAddToGrid moveUpToTheLeft(int col, int row, Circle moveOption1) {
+    public void moveUpToTheLeft(int col, int row, Circle moveOption1) {
         if (!(board.getFigure((col - 1), (row - 1)) instanceof Pawn)) {
-            return new ToAddToGrid(moveOption1, col - 1, row - 1);
+            toAddToGrid.add(new ToAddToGrid(moveOption1, col - 1, row - 1));
         }
-        return null;
     }
 
+    public List<ToAddToGrid> getToAddToGrid() {
+        return toAddToGrid;
+    }
 }
