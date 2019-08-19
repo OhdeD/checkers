@@ -81,14 +81,16 @@ public class Board {
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
 
-        if (row2 == 0 && getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
-            endGame = true;
-            winner = "YOU! \n CONGRATULATIONS!";
-        }
-        if (row2 == 7 && getFigure(col2, row2).getColour().equals(COMP_COLOUR)) {
-            endGame = true;
-            winner = "Computer player \n Maybe next time ;)";
-        }
+
+
+//        if (row2 == 0 && getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
+//            endGame = true;
+//            winner = "YOU! \n CONGRATULATIONS!";
+//        }
+//        if (row2 == 7 && getFigure(col2, row2).getColour().equals(COMP_COLOUR)) {
+//            endGame = true;
+//            winner = "Computer player \n Maybe next time ;)";
+//        }
 
         return oldFigure.remove(grid);
     }
@@ -183,10 +185,19 @@ public class Board {
         int row2 = c.getRowToMove();
         System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
 
-        return new ArrayList<>(move(col1, row1, col2, row2));
+       List<Node> toRemoveFromGrid = new ArrayList<>(move(col1, row1, col2, row2));
+
+        IsEndGame isEndGame = new IsEndGame(this);
+        if (isEndGame.isEnd(col2, row2)){
+            winner = isEndGame.getWinner();
+            endGame = true;
+        }
+
+        return toRemoveFromGrid;
     }
 
     public boolean isEndGame() {
+
         return endGame;
     }
 
