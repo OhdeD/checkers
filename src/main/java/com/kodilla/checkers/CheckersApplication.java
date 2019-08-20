@@ -79,7 +79,6 @@ public class CheckersApplication extends Application {
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             boolean firstMove = true;
-
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (firstMove) {
@@ -91,8 +90,9 @@ public class CheckersApplication extends Application {
                     List<Node> nodesToRemove = new ArrayList<>(board.endMove(mouseEvent));
                     if (nodesToRemove.size() == 0) {
                         firstMove = true;
-                    } else {
+                    }  else {
                         grid.getChildren().removeAll(nodesToRemove);
+
                         EndSceneIfEnd(board, primaryStage);
 
                         List<Node> computerNodesToRemove = board.computersMove();
@@ -113,7 +113,7 @@ public class CheckersApplication extends Application {
 
     }
 
-    public static void firstScene(Board board, Stage primaryStage, GridPane grid ) {
+    public static void firstScene(Board board, Stage primaryStage, GridPane grid) {
         Stage firstWindow = new Stage();
         firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
         firstWindow.initModality(Modality.WINDOW_MODAL);

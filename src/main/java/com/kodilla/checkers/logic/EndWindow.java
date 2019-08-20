@@ -51,7 +51,7 @@ public class EndWindow {
         winnerIs.setTextFill(Color.WHITE);
 
         Label whoWon = new Label("" + winner);
-        whoWon.setFont(Font.font("Vineta BT", FontWeight.BOLD, FontPosture.REGULAR, 22));
+        whoWon.setFont(Font.font("Vineta BT", FontWeight.BOLD, FontPosture.REGULAR, 20));
         whoWon.setPadding(new Insets(10, 0, 0, 0));
         whoWon.setTextFill(Color.WHITE);
         whoWon.setPadding(new Insets(0, 0, 50, 0));

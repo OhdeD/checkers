@@ -22,11 +22,9 @@ public class IsEndGame {
         List<Coordinates> playersPawns = new PawnsList(board, PLAYERS_COLOUR).getPawns();
         int noOfComputerPawns = computersPawns.size();
         int noOfPlayersPawns = playersPawns.size();
-        System.out.println(noOfComputerPawns + "computer left");
-        System.out.println(noOfPlayersPawns + "player left");
 
         if (row2 == 0 && board.getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR) || noOfComputerPawns == 0) {
-            winner = "YOU! CONGRATULATIONS!";
+            winner = "!!! YOU !!!";
             return true;
         }
         if ((row2 == 7 && board.getFigure(col2, row2).getColour().equals(COMP_COLOUR)) || noOfPlayersPawns == 0) {

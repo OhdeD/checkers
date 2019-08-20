@@ -85,7 +85,7 @@ public class Board {
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
         this.col2 = col2;
-        this.row2 = row2;
+        this.row2  = row2;
         return oldFigure.remove(grid);
     }
 
@@ -162,7 +162,8 @@ public class Board {
 
     public List<Node> endMove(MouseEvent mouseEvent) {
         PawnMove pawnMove = new PawnMove(this, grid, picked);
-        return pawnMove.moveExecutor(mouseEvent);
+        List<Node> list = new ArrayList<>(pawnMove.moveExecutor(mouseEvent));
+        return list;
     }
 
     public List<Node> computersMove() {

@@ -24,6 +24,7 @@ public class PawnMove {
     private int col;
     private int row;
     private String pawnToMoveColour;
+    private boolean wasBeating = false;
 
 
     public PawnMove(Board board, GridPane grid, List<Node> picked) {
@@ -60,6 +61,7 @@ public class PawnMove {
                                 if (board.getFigure(moves[0] + 1, moves[1] + 1) instanceof Pawn) {
                                     if (!(board.getFigure(moves[0], moves[1]).getColour().equals(board.getFigure(moves[0] + 1, moves[1] + 1).getColour()))) {
                                         addCoordinates();
+                                        wasBeating = true;
                                     } else {
                                         System.out.println("You can't beat your own Pawn");
                                         startMoveMethod = false;
@@ -72,6 +74,7 @@ public class PawnMove {
                                 if (board.getFigure(moves[0] + 1, moves[1] - 1) instanceof Pawn) {
                                     if (!(pawnToMoveColour.equals(board.getFigure(moves[0] + 1, moves[1] - 1).getColour()))) {
                                         addCoordinates();
+                                        wasBeating = true;
                                     } else {
                                         System.out.println("You can't beat your own Pawn");
                                         startMoveMethod = false;
@@ -84,6 +87,7 @@ public class PawnMove {
                                 if (board.getFigure(moves[0] - 1, moves[1] - 1) instanceof Pawn) {
                                     if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] - 1).getColour()))) {
                                         addCoordinates();
+                                        wasBeating = true;
                                     } else {
                                         System.out.println("You can't beat your own Pawn");
                                         startMoveMethod = false;
@@ -96,6 +100,7 @@ public class PawnMove {
                                 if (board.getFigure(moves[0] - 1, moves[1] + 1) instanceof Pawn) {
                                     if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] + 1).getColour()))) {
                                         addCoordinates();
+                                        wasBeating = true;
                                     } else {
                                         System.out.println("You can't beat your own Pawn");
                                         startMoveMethod = false;
@@ -166,5 +171,9 @@ public class PawnMove {
     private void addCoordinates() {
         moves[2] = col;
         moves[3] = row;
+    }
+
+    public boolean isWasBeating() {
+        return wasBeating;
     }
 }
