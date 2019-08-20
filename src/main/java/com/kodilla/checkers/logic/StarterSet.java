@@ -12,6 +12,11 @@ public class StarterSet {
     }
 
     public void start() {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                board.setFigure(col, row, new None());
+            }
+        }
         board.setFigure(0, 0, new Pawn(COMP_COLOUR));
         board.setFigure(2, 0, new Pawn(COMP_COLOUR));
         board.setFigure(4, 0, new Pawn(COMP_COLOUR));

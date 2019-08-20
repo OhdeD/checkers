@@ -26,6 +26,12 @@ public class Board {
     private List<BoardRow> rows = new ArrayList<>();
     private String winner;
 
+    private int col2;
+    private int row2;
+
+    private int[] moves;
+    private List<Node> picked;
+
     private GridPane grid;
 
     private ImagePattern blackPawnPattern;
@@ -74,28 +80,12 @@ public class Board {
 
     public List<Node> move(int col1, int row1, int col2, int row2) {
         NewFigure f = new NewFigure(col1, row1, col2, row2, this);
-
         grid.add(f.newFigureToGrid(), col2, row2);
         setFigure(col2, row2, f.newFigure());
-
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
-
-        IsEndGame isEndGame = new IsEndGame(this);
-        if (isEndGame.isEnd(col2, row2)) {
-            winner = isEndGame.getWinner();
-            endGame = true;
-        }
-
-//        if (row2 == 0 && getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
-//            endGame = true;
-//            winner = "YOU! \n CONGRATULATIONS!";
-//        }
-//        if (row2 == 7 && getFigure(col2, row2).getColour().equals(COMP_COLOUR)) {
-//            endGame = true;
-//            winner = "Computer player \n Maybe next time ;)";
-//        }
-
+        this.col2 = col2;
+        this.row2 = row2;
         return oldFigure.remove(grid);
     }
 
@@ -132,7 +122,6 @@ public class Board {
     public void enter(MouseEvent mouseEvent) {
         int col = 0;
         int row = 0;
-
         for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
             if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + FIELD_WIDTH))) {
                 for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
@@ -158,9 +147,6 @@ public class Board {
         }
         return toRemove;
     }
-
-    private int[] moves;
-    private List<Node> picked;
 
     public boolean startMove(MouseEvent mouseEvent) {
         PawnChoice p = new PawnChoice(this, grid);
@@ -189,20 +175,17 @@ public class Board {
             int col2 = c.getColToMove();
             int row2 = c.getRowToMove();
             System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
-            return toRemoveFromGrid = move(col1, row1, col2, row2);
-        } else {
-            int col2 = 0;
-            int row2 = 0;
-            IsEndGame end = new IsEndGame(this);
-            if (end.isEnd(col2, row2)) {
-                winner = end.getWinner();
-                endGame = true;
-            }
-            return toRemoveFromGrid;
+            return new ArrayList<>(move(col1, row1, col2, row2));
         }
+        return toRemoveFromGrid;
     }
 
-    public boolean isEndGame() {
+    public boolean isEndGame(int col2, int row2) {
+        IsEndGame i = new IsEndGame(this);
+        if (i.isEnd(col2, row2)) {
+            winner = i.getWinner();
+            endGame = true;
+        }
         return endGame;
     }
 
@@ -244,6 +227,14 @@ public class Board {
 
     public static int getPADDING() {
         return PADDING;
+    }
+
+    public int getCol2() {
+        return col2;
+    }
+
+    public int getRow2() {
+        return row2;
     }
 }
 

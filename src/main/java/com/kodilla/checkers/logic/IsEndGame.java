@@ -25,10 +25,7 @@ public class IsEndGame {
         System.out.println(noOfComputerPawns + "computer left");
         System.out.println(noOfPlayersPawns + "player left");
 
-        if (row2 == 0 && board.getFigure(col2, row2) instanceof None && noOfComputerPawns == 0) {
-            winner = "YOU! CONGRATULATIONS!";
-            return true;
-        } else if (row2 == 0 && board.getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
+        if (row2 == 0 && board.getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR) || noOfComputerPawns == 0) {
             winner = "YOU! CONGRATULATIONS!";
             return true;
         }
@@ -36,7 +33,7 @@ public class IsEndGame {
             winner = "Computer player \n Maybe next time ;)";
             return true;
         }
-        return false;
+       return false;
     }
 
     public String getWinner() {

@@ -13,21 +13,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
-import java.awt.*;
 
 public class Welcome {
     private String playersColour;
-    private boolean startBoard = false;
     private Image boardPart = new Image("file:src/main/resources/windowBackground.png");
     private BackgroundSize size = new BackgroundSize(400, 400, false, false, true, true);
     private BackgroundImage windowBackground = new BackgroundImage(boardPart, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
     private Background background = new Background(windowBackground);
-    Board board;
+    private Board board;
+    private Stage firstWindow;
+    private GridPane grid;
 
 
-    public Welcome(Board board) {
+    public Welcome(Board board, Stage firstWindow, GridPane grid) {
         this.board = board;
+        this.firstWindow = firstWindow;
+        this.grid = grid;
     }
 
     public Scene openWelcomeWindow() {
@@ -51,13 +54,10 @@ public class Welcome {
         white.setText("WHITE");
         white.setFont(Font.font("Algerian", FontWeight.BOLD, FontPosture.REGULAR, 15));
         white.setPrefSize(130, 100);
-
         white.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 playersColour = "WHITE";
-                startBoard = true;
                 board.initBoard(playersColour);
                 board.showBoard();
             }
@@ -67,38 +67,38 @@ public class Welcome {
         black.setText("BLACK");
         black.setFont(Font.font("Algerian", FontWeight.BOLD, FontPosture.REGULAR, 15));
         black.setPrefSize(130, 100);
-
         black.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
                 playersColour = "BLACK";
-                startBoard = true;
                 board.initBoard(playersColour);
                 board.showBoard();
             }
         });
 
+        Button play = new Button();
+        play.setText("START GAME");
+        play.setFont(Font.font("Algerian", FontWeight.BOLD, FontPosture.REGULAR, 15));
+        play.setPrefSize(200, 60);
+        play.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                firstWindow.close();
+            }
+        });
+
         HBox buttons = new HBox(20);
         buttons.getChildren().addAll(white, black);
-        buttons.setPadding(new Insets(30, 50, 50, 50));
+        buttons.setPadding(new Insets(30, 50, 20, 50));
         buttons.setAlignment(Pos.CENTER);
 
         VBox view = new VBox(0);
-        view.getChildren().addAll(welcomeText, chooseColour, buttons, haveFun);
+        view.getChildren().addAll(welcomeText, chooseColour, buttons, play, haveFun);
         view.setAlignment(Pos.CENTER);
 
         StackPane window = new StackPane();
         window.getChildren().add(view);
         window.setBackground(background);
         return new Scene(window, 400, 400);
-    }
-
-    public String getPlayersColour() {
-        return playersColour;
-    }
-
-    public boolean isStartBoard() {
-        return startBoard;
     }
 }

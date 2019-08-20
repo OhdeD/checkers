@@ -28,6 +28,8 @@ public class CheckersApplication extends Application {
     private Image whitePawn = new Image("file:src/main/resources/PIONEKbialy.png");
     private String playersColour = "WHITE";
 
+    private GridPane grid;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -41,9 +43,7 @@ public class CheckersApplication extends Application {
         ImagePattern blackPawnPattern = new ImagePattern(blackPawn, 0, 0, 1, 1, true);
         ImagePattern whitePawnPattern = new ImagePattern(whitePawn, 0, 0, 1, 1, true);
 
-
-
-        GridPane grid = new GridPane();
+        grid = new GridPane();
         grid.setPadding(new Insets(35, 35, 35, 35));
         grid.setBackground(background);
 
@@ -60,7 +60,6 @@ public class CheckersApplication extends Application {
 
         Group root = new Group(grid);
         Scene scene = new Scene(root, 870, 870);
-
 
         scene.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>() {
             @Override
@@ -94,21 +93,13 @@ public class CheckersApplication extends Application {
                         firstMove = true;
                     } else {
                         grid.getChildren().removeAll(nodesToRemove);
+                        EndSceneIfEnd(board, primaryStage);
 
                         List<Node> computerNodesToRemove = board.computersMove();
                         grid.getChildren().removeAll(computerNodesToRemove);
                         System.out.println("It's computer's move now.");
                         firstMove = true;
-
-                        if (board.isEndGame()) {
-                            Stage endWindow = new Stage();
-                            endWindow.setTitle("End of the Game");
-                            endWindow.initModality(Modality.WINDOW_MODAL);
-                            endWindow.initOwner(primaryStage);
-                            endWindow.setScene(new EndWindow(board.getWinner()).openEndWindow());
-                            endWindow.show();
-
-                        }
+                        EndSceneIfEnd(board, primaryStage);
                     }
                 }
             }
@@ -118,14 +109,31 @@ public class CheckersApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        firstScene(board, primaryStage, grid);
+
+    }
+
+    public static void firstScene(Board board, Stage primaryStage, GridPane grid ) {
         Stage firstWindow = new Stage();
         firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
         firstWindow.initModality(Modality.WINDOW_MODAL);
         firstWindow.initOwner(primaryStage);
-        Welcome welcome = new Welcome(board);
+        Welcome welcome = new Welcome(board, firstWindow, grid);
         firstWindow.setScene(welcome.openWelcomeWindow());
         firstWindow.show();
+    }
+
+    private void EndSceneIfEnd(Board board, Stage primaryStage) {
+        if (board.isEndGame(board.getCol2(), board.getRow2())) {
+            Stage endGameWindow = new Stage();
+            endGameWindow.setTitle("End of the Game");
+            endGameWindow.initModality(Modality.WINDOW_MODAL);
+            endGameWindow.initOwner(primaryStage);
+            EndWindow endWindow = new EndWindow(board.getWinner(), endGameWindow, primaryStage, board, grid);
+            endGameWindow.setScene(endWindow.openEndWindow());
+            endGameWindow.show();
 
 
+        }
     }
 }
