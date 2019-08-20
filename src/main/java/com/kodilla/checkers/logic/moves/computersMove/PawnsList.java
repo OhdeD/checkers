@@ -7,27 +7,27 @@ import com.kodilla.checkers.logic.Pawn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputersPawns {
+public class PawnsList {
     private Board board;
-    private String COMP_COLOUR;
-    private List<Coordinates> computersPawns = new ArrayList<>();
+    private String colour;
+    private List<Coordinates> pawns = new ArrayList<>();
 
-    public ComputersPawns(Board board, String COMP_COLOUR) {
+    public PawnsList(Board board, String colour) {
         this.board = board;
-        this.COMP_COLOUR = COMP_COLOUR;
+        this.colour = colour;
     }
 
-    public List<Coordinates> getComputersPawns() {
-        computersPawns.clear();
+    public List<Coordinates> getPawns() {
+        pawns.clear();
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 if (board.getFigure(col, row) instanceof Pawn) {
-                    if (board.getFigure(col, row).getColour().equals(COMP_COLOUR)) {
-                        computersPawns.add(new Coordinates(col, row, 0, 0));
+                    if (board.getFigure(col, row).getColour().equals(colour)) {
+                        pawns.add(new Coordinates(col, row, 0, 0));
                     }
                 }
             }
         }
-        return computersPawns;
+        return pawns;
     }
 }

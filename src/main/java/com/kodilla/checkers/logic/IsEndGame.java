@@ -1,7 +1,6 @@
 package com.kodilla.checkers.logic;
 
-import com.kodilla.checkers.logic.moves.computersMove.ComputersPawns;
-import com.kodilla.checkers.logic.moves.computersMove.NoOfPlayersPawns;
+import com.kodilla.checkers.logic.moves.computersMove.PawnsList;
 
 import java.util.List;
 
@@ -19,15 +18,18 @@ public class IsEndGame {
     }
 
     public boolean isEnd(int col2, int row2) {
-        List<Coordinates> computersPawns = new ComputersPawns(board, COMP_COLOUR).getComputersPawns();
-        List<Coordinates> playersPawns = new NoOfPlayersPawns(board, PLAYERS_COLOUR).getPlayersPawns();
+        List<Coordinates> computersPawns = new PawnsList(board, COMP_COLOUR).getPawns();
+        List<Coordinates> playersPawns = new PawnsList(board, PLAYERS_COLOUR).getPawns();
         int noOfComputerPawns = computersPawns.size();
         int noOfPlayersPawns = playersPawns.size();
         System.out.println(noOfComputerPawns + "computer left");
         System.out.println(noOfPlayersPawns + "player left");
 
-        if ((row2 == 0 && board.getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) || noOfComputerPawns == 0) {
-            winner = "YOU! \n CONGRATULATIONS!";
+        if (row2 == 0 && board.getFigure(col2, row2) instanceof None && noOfComputerPawns == 0) {
+            winner = "YOU! CONGRATULATIONS!";
+            return true;
+        } else if (row2 == 0 && board.getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
+            winner = "YOU! CONGRATULATIONS!";
             return true;
         }
         if ((row2 == 7 && board.getFigure(col2, row2).getColour().equals(COMP_COLOUR)) || noOfPlayersPawns == 0) {

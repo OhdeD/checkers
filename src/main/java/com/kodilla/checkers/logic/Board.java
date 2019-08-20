@@ -81,7 +81,11 @@ public class Board {
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
 
-
+        IsEndGame isEndGame = new IsEndGame(this);
+        if (isEndGame.isEnd(col2, row2)) {
+            winner = isEndGame.getWinner();
+            endGame = true;
+        }
 
 //        if (row2 == 0 && getFigure(col2, row2).getColour().equals(PLAYERS_COLOUR)) {
 //            endGame = true;
@@ -177,27 +181,28 @@ public class Board {
 
     public List<Node> computersMove() {
         ComputersMove computersMove = new ComputersMove(this);
+        List<Node> toRemoveFromGrid = new ArrayList<>();
         Coordinates c = computersMove.pickMove();
-
-        int col1 = c.getCol();
-        int row1 = c.getRow();
-        int col2 = c.getColToMove();
-        int row2 = c.getRowToMove();
-        System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
-
-       List<Node> toRemoveFromGrid = new ArrayList<>(move(col1, row1, col2, row2));
-
-        IsEndGame isEndGame = new IsEndGame(this);
-        if (isEndGame.isEnd(col2, row2)){
-            winner = isEndGame.getWinner();
-            endGame = true;
+        if (c != null) {
+            int col1 = c.getCol();
+            int row1 = c.getRow();
+            int col2 = c.getColToMove();
+            int row2 = c.getRowToMove();
+            System.out.println("Coordinates of computer's move after streams: " + col1 + " " + row1 + " " + col2 + " " + row2);
+            return toRemoveFromGrid = move(col1, row1, col2, row2);
+        } else {
+            int col2 = 0;
+            int row2 = 0;
+            IsEndGame end = new IsEndGame(this);
+            if (end.isEnd(col2, row2)) {
+                winner = end.getWinner();
+                endGame = true;
+            }
+            return toRemoveFromGrid;
         }
-
-        return toRemoveFromGrid;
     }
 
     public boolean isEndGame() {
-
         return endGame;
     }
 

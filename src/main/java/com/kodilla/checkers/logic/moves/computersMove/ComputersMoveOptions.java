@@ -5,26 +5,25 @@ import com.kodilla.checkers.logic.Coordinates;
 import com.kodilla.checkers.logic.None;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ComputersMoveOptions {
     private Board board;
-    private ComputersPawns computersPawns;
+    private PawnsList pawnsList;
 
     public ComputersMoveOptions(Board board) {
         this.board = board;
-        computersPawns = new ComputersPawns(board, board.getCOMP_COLOUR());
+        pawnsList = new PawnsList(board, board.getCOMP_COLOUR());
     }
 
     public Set<Set<Coordinates>> moveOptions() {
-        Set<Coordinates> moveDownToTheRight = computersPawns.getComputersPawns().stream()
+        Set<Coordinates> moveDownToTheRight = pawnsList.getPawns().stream()
                 .filter(e -> e.getCol() < 7 && e.getRow() < 7)
                 .filter(e -> board.getFigure((e.getCol() + 1), (e.getRow() + 1)) instanceof None)
                 .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() + 1, e.getRow() + 1))
                 .collect(Collectors.toSet());
-        Set<Coordinates> moveDownToTheLeft = computersPawns.getComputersPawns().stream()
+        Set<Coordinates> moveDownToTheLeft = pawnsList.getPawns().stream()
                 .filter(e -> e.getCol() > 0 && e.getRow() < 7)
                 .filter(e -> board.getFigure((e.getCol() - 1), (e.getRow() + 1)) instanceof None)
                 .map(e -> new Coordinates(e.getCol(), e.getRow(), e.getCol() - 1, e.getRow() + 1))

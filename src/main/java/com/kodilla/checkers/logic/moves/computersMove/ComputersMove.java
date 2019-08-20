@@ -2,6 +2,7 @@ package com.kodilla.checkers.logic.moves.computersMove;
 
 import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Coordinates;
+import com.kodilla.checkers.logic.IsEndGame;
 
 import java.util.*;
 
@@ -20,7 +21,10 @@ public class ComputersMove {
                 .flatMap(Collection::stream)
                 .findAny();
 
-        Coordinates coordinates = beatingCoordinate.orElse(moveCoordinate.get());
-        return coordinates;
+        try {
+            return beatingCoordinate.orElse(moveCoordinate.get());
+        }catch (NoSuchElementException e){
+            return null;
+        }
     }
 }
