@@ -17,16 +17,21 @@ import javafx.scene.text.FontWeight;
 import java.awt.*;
 
 public class Welcome {
-    private  String playersColour;
-    private  boolean startBoard = false;
+    private String playersColour;
+    private boolean startBoard = false;
     private Image boardPart = new Image("file:src/main/resources/windowBackground.png");
     private BackgroundSize size = new BackgroundSize(400, 400, false, false, true, true);
     private BackgroundImage windowBackground = new BackgroundImage(boardPart, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size);
     private Background background = new Background(windowBackground);
+    Board board;
 
 
+    public Welcome(Board board) {
+        this.board = board;
+    }
 
     public Scene openWelcomeWindow() {
+
 
         Label welcomeText = new Label("WELCOME TO \n CHECKERS!");
         welcomeText.setFont(Font.font("Vineta BT", FontWeight.BOLD, FontPosture.REGULAR, 25));
@@ -53,6 +58,8 @@ public class Welcome {
             public void handle(ActionEvent event) {
                 playersColour = "WHITE";
                 startBoard = true;
+                board.initBoard(playersColour);
+                board.showBoard();
             }
         });
 
@@ -67,6 +74,8 @@ public class Welcome {
             public void handle(ActionEvent event) {
                 playersColour = "BLACK";
                 startBoard = true;
+                board.initBoard(playersColour);
+                board.showBoard();
             }
         });
 

@@ -122,7 +122,10 @@ public class CheckersApplication extends Application {
         firstWindow.setTitle("Welcome to OhdeD's CHECKERS ;)");
         firstWindow.initModality(Modality.WINDOW_MODAL);
         firstWindow.initOwner(primaryStage);
-        firstWindow.setScene(new Welcome().openWelcomeWindow());
+        Welcome welcome = new Welcome(board);
+        firstWindow.setScene(welcome.openWelcomeWindow());
         firstWindow.show();
+
+
     }
 }
