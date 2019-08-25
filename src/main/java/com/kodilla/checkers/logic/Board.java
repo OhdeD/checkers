@@ -85,7 +85,7 @@ public class Board {
         setFigure(col1, row1, new None());
         OldFigure oldFigure = new OldFigure(col1, row1, col2, row2, this);
         this.col2 = col2;
-        this.row2  = row2;
+        this.row2 = row2;
         return oldFigure.remove(grid);
     }
 
@@ -183,6 +183,7 @@ public class Board {
 
     public boolean isEndGame(int col2, int row2) {
         IsEndGame i = new IsEndGame(this);
+        endGame = false;
         if (i.isEnd(col2, row2)) {
             winner = i.getWinner();
             endGame = true;

@@ -45,92 +45,101 @@ public class PawnMove {
 
         grid.getChildren().removeAll(picked);
 
-        for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
-            if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
-                for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
-                    if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
-                        if (!(board.getFigure(col, row) instanceof Pawn)) {
-                            if (upRight()) {
-                                addCoordinates();
-                            } else if (upLeft()) {
-                                addCoordinates();
-                            } else if (downLeft() || downRight()) {
-                                System.out.println("You can't go back");
+        if (startMoveMethod) {
+            for (int x = PADDING; x < BOARD_WIDTH; x += FIELD_WIDTH) {
+                if ((x <= mouseEvent.getX()) & (mouseEvent.getX() <= (x + 100))) {
+                    for (int y = PADDING; y < BOARD_HIGHT; y += FIELD_HIGHT) {
+                        if ((y <= mouseEvent.getY()) & (mouseEvent.getY() <= (y + 100))) {
+                            if (!(board.getFigure(col, row) instanceof Pawn)) {
+                                if (upRight()) {
+                                    addCoordinates();
+                                } else if (upLeft()) {
+                                    addCoordinates();
+                                } else if (downLeft() || downRight()) {
+                                    System.out.println("You can't go back");
+                                    startMoveMethod = false;
+                                } else if (downRightBeating()) {
+                                    if (board.getFigure(moves[0] + 1, moves[1] + 1) instanceof Pawn) {
+                                        if (!(board.getFigure(moves[0], moves[1]).getColour().equals(board.getFigure(moves[0] + 1, moves[1] + 1).getColour()))) {
+                                            addCoordinates();
+                                            wasBeating = true;
+                                        } else {
+                                            System.out.println("You can't beat your own Pawn");
+                                            startMoveMethod = false;
+                                        }
+                                    } else {
+                                        System.out.println("Not allowed move. You can move only to addiacent field");
+                                        startMoveMethod = false;
+                                    }
+                                } else if (upRightBeating()) {
+                                    if (board.getFigure(moves[0] + 1, moves[1] - 1) instanceof Pawn) {
+                                        if (!(pawnToMoveColour.equals(board.getFigure(moves[0] + 1, moves[1] - 1).getColour()))) {
+                                            addCoordinates();
+                                            wasBeating = true;
+                                        } else {
+                                            System.out.println("You can't beat your own Pawn");
+                                            startMoveMethod = false;
+                                        }
+                                    } else {
+                                        System.out.println("Not allowed move. You can move only to addiacent field");
+                                        startMoveMethod = false;
+                                    }
+                                } else if (upLeftBeating()) {
+                                    if (board.getFigure(moves[0] - 1, moves[1] - 1) instanceof Pawn) {
+                                        if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] - 1).getColour()))) {
+                                            addCoordinates();
+                                            wasBeating = true;
+                                        } else {
+                                            System.out.println("You can't beat your own Pawn");
+                                            startMoveMethod = false;
+                                        }
+                                    } else {
+                                        System.out.println("Not allowed move. You can move only to addiacent field");
+                                        startMoveMethod = false;
+                                    }
+                                } else if (downLeftBeating()) {
+                                    if (board.getFigure(moves[0] - 1, moves[1] + 1) instanceof Pawn) {
+                                        if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] + 1).getColour()))) {
+                                            addCoordinates();
+                                            wasBeating = true;
+                                        } else {
+                                            System.out.println("You can't beat your own Pawn");
+                                            startMoveMethod = false;
+                                        }
+                                    } else {
+                                        System.out.println("Not allowed move. You can move only to addiacent field");
+                                        startMoveMethod = false;
+                                    }
+                                } else {
+                                    System.out.println("Not allowed field");
+                                    startMoveMethod = false;
+                                }
+                            } else if (theSame()) {
                                 startMoveMethod = false;
-                            } else if (downRightBeating()) {
-                                if (board.getFigure(moves[0] + 1, moves[1] + 1) instanceof Pawn) {
-                                    if (!(board.getFigure(moves[0], moves[1]).getColour().equals(board.getFigure(moves[0] + 1, moves[1] + 1).getColour()))) {
-                                        addCoordinates();
-                                        wasBeating = true;
-                                    } else {
-                                        System.out.println("You can't beat your own Pawn");
-                                        startMoveMethod = false;
-                                    }
-                                } else {
-                                    System.out.println("Not allowed move. You can move only to addiacent field");
-                                    startMoveMethod = false;
-                                }
-                            } else if (upRightBeating()) {
-                                if (board.getFigure(moves[0] + 1, moves[1] - 1) instanceof Pawn) {
-                                    if (!(pawnToMoveColour.equals(board.getFigure(moves[0] + 1, moves[1] - 1).getColour()))) {
-                                        addCoordinates();
-                                        wasBeating = true;
-                                    } else {
-                                        System.out.println("You can't beat your own Pawn");
-                                        startMoveMethod = false;
-                                    }
-                                } else {
-                                    System.out.println("Not allowed move. You can move only to addiacent field");
-                                    startMoveMethod = false;
-                                }
-                            } else if (upLeftBeating()) {
-                                if (board.getFigure(moves[0] - 1, moves[1] - 1) instanceof Pawn) {
-                                    if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] - 1).getColour()))) {
-                                        addCoordinates();
-                                        wasBeating = true;
-                                    } else {
-                                        System.out.println("You can't beat your own Pawn");
-                                        startMoveMethod = false;
-                                    }
-                                } else {
-                                    System.out.println("Not allowed move. You can move only to addiacent field");
-                                    startMoveMethod = false;
-                                }
-                            } else if (downLeftBeating()) {
-                                if (board.getFigure(moves[0] - 1, moves[1] + 1) instanceof Pawn) {
-                                    if (!(pawnToMoveColour.equals(board.getFigure(moves[0] - 1, moves[1] + 1).getColour()))) {
-                                        addCoordinates();
-                                        wasBeating = true;
-                                    } else {
-                                        System.out.println("You can't beat your own Pawn");
-                                        startMoveMethod = false;
-                                    }
-                                } else {
-                                    System.out.println("Not allowed move. You can move only to addiacent field");
-                                    startMoveMethod = false;
-                                }
+                                System.out.println("This pawn is not picked anymore");
                             } else {
-                                System.out.println("Not allowed field");
+                                System.out.println(" You can't move onto another Pawn");
                                 startMoveMethod = false;
                             }
-                        } else if (theSame()) {
-                            startMoveMethod = false;
-                            System.out.println("This pawn is not picked anymore");
-                        } else {
-                            System.out.println(" You can't move onto another Pawn");
+                        }
+                        row++;
+                        if (mouseEvent.getY() < PADDING || mouseEvent.getY() > BOARD_HIGHT - PADDING) {
                             startMoveMethod = false;
                         }
                     }
-                    row++;
+                }
+                col += 1;
+                if (mouseEvent.getX() < PADDING || mouseEvent.getX() > BOARD_WIDTH - PADDING) {
+                    startMoveMethod = false;
                 }
             }
-            col += 1;
         }
         if (startMoveMethod) {
             return new ArrayList<>(board.move(moves[0], moves[1], moves[2], moves[3]));
         }
         return new ArrayList<>();
     }
+
 
     private boolean upRight() {
         return (moves[0] + 1) == col & (moves[1] - 1) == row;
