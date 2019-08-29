@@ -3,6 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/checkers_jar</output-path>
     <root id="archive" name="checkers.jar">
       <element id="module-output" name="checkers" />
+      <element id="module-source" name="checkers" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>
